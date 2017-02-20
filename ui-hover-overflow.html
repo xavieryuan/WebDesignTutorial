@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="assets/07/styles.css" rel="stylesheet" type="text/css">
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/07/myJS.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="wrapper">
+<h1>UI模式：悬浮溢出</h1>
+<section class="card lbd">
+<h2>悬浮溢出</h2>
+<p>“悬浮溢出”是一种简单实用的模式。当鼠标悬浮在某元素上时，该元素会自动扩展显示详情信息；鼠标移开，详情信息自动隐藏，如下面这张设计效果图所示：</p>
+<figure><img src="assets/07/hover-popout.png" />
+  <figcaption>设计效果图</figcaption>
+</figure>
+<p>HTML结构如下</p>
+<code class="lang-html">&lt;div class=&quot;hover-popout&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;div class=&quot;info&quot;&gt;&lt;img src=&quot;drawingartwork_01.png&quot; alt=&quot;Artwork&quot;&gt;&lt;h3&gt;作品标题&lt;/h3&gt;&lt;p&gt;作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;info&quot;&gt;&lt;img src=&quot;drawingartwork_02.png&quot; alt=&quot;Artwork&quot;&gt;&lt;h3&gt;作品标题&lt;/h3&gt;&lt;p&gt;作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;info&quot;&gt;&lt;img src=&quot;drawingartwork_03.png&quot; alt=&quot;Artwork&quot;&gt;&lt;h3&gt;作品标题&lt;/h3&gt;&lt;p&gt;作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</code>
+<p class="quote">Hover Popout非常简单实用，不需借助JavaScript，仅靠CSS3就可以实现！</p>
+<p>显示效果</p>
+<div class="hover-popout">
+<ul>
+	<li><div class="info"><img src="assets/07/drawingartwork_01.png" alt="Artwork"><h3>作品标题</h3><p>作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。</p></div></li>
+    <li><div class="info"><img src="assets/07/drawingartwork_02.png" alt="Artwork"><h3>作品标题</h3><p>作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。</p></div></li>
+    <li><div class="info"><img src="assets/07/drawingartwork_03.png" alt="Artwork"><h3>作品标题</h3><p>作品简介写在这里，可能会有比较多的文字，需要占用多行，但超出一定高度就会隐藏。</p></div></li>
+</ul>
+</div>
+</section>
+</div>
+</body>
+</html>

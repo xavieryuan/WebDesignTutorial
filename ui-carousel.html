@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/08/styles.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/08/script.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>UI模式：走马灯</h1>
+<section class="card">
+<h2>走马灯的实现机制</h2>
+<p>走马灯模式常被用于网站首页呈现一些重要的信息，比如活动海报，产品推介等等，这种模式可以很好地吸引用户的眼球。</p>
+<figure><img src="assets/08/imgroller_example.png" />
+<figcaption>支付宝首页的“走马灯”模式（截图）</figcaption></figure>
+<p>通常，“走马灯”的HTML结构如下</p>
+<figure><img src="assets/08/imgroller_html.png" /><figcaption>HTML结构</figcaption></figure>
+<code class="lang-html">&lt;div id=&quot;carousel&quot;&gt;
+&lt;nav&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=&quot;btn1&quot; href=&quot;#&quot;&gt;btn1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a id=&quot;btn2&quot; href=&quot;#&quot;&gt;btn2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a id=&quot;btn3&quot; href=&quot;#&quot;&gt;btn3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;div id=&quot;cnt&quot;&gt;
+&lt;ul&gt;&lt;li&gt;&lt;img src=&quot;assets/08/01.jpg&quot; /&gt;&lt;/li&gt;&lt;li&gt;&lt;img src=&quot;assets/08/02.jpg&quot; /&gt;&lt;/li&gt;&lt;li&gt;&lt;img src=&quot;assets/08/03.jpg&quot; /&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code>
+<p>“走马灯”的设计效果图</p>
+<p><img src="assets/08/imgroller_layout.png" />
+<figcaption>设计效果图</figcaption>
+</p>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>点击 #btn1时</td>
+    <td>#cnt ul</td>
+    <td>CSS的left值移动到0</td>
+  </tr>
+  <tr>
+    <td>点击 #btn2时</td>
+    <td>#cnt ul</td>
+    <td>CSS的left值移动到-550px（每张图都是550px宽）</td>
+  </tr>
+  <tr>
+    <td>点击 #btn3时</td>
+    <td>#cnt ul</td>
+    <td>CSS的left值移动到-1100px</td>
+  </tr>
+  <tr>
+    <td>文档加载完成时</td>
+    <td>#btn1, #btn2, #btn3</td>
+    <td>绑定点击事件处理</td>
+  </tr>
+</table>
+<p>注意事项：</p>
+<ul>
+  <li>页面初始化。有一张图是默认显示的（在父元素的显示区域之内），其他图都隐藏起来（在父元素的现实区域之外），实现这一点，你需要让父元素的overflow为hidden。</li>
+  <li>图片的移动利用了CSS3 transition，当然你也可以直接用jQuery的animate()方法来实现。</li>
+  <li>如果能设计一个JavaScript函数来控制移动，能让你事半功倍。</li>
+  <li>走马灯模式可能有多个变种：
+  <ul>
+    <li>导航按钮的位置可能在显示区域外，也可能叠在显示区域之上</li>
+    <li>图片的切换动画可能是水平移动，也肯能是垂直移动或其他形式的变化（比如透明度或翻转角度）。</li>
+    </ul>
+  </li>
+</ul>
+<div id="carousel">
+<nav>
+	<ul>
+    <li><a id="btn1" href="#">btn1</a></li>
+    <li><a id="btn2" href="#">btn2</a></li>
+    <li><a id="btn3" href="#">btn3</a></li>
+    </ul>
+</nav>
+<div id="cnt">
+	<ul><li><img src="assets/08/01.jpg" /></li><li><img src="assets/08/02.jpg" /></li><li><img src="assets/08/03.jpg" /></li></ul>
+   </div>
+</div>
+</section>
+<section class="card lbd">
+<h2>制作一个改进版的走马灯（<a href="assets/08/carousel.pdf">下载PDF设计图</a>）</h2>
+<p>效果图如下</p>
+<figure><img src="assets/08/carousel.png" /></figure>
+<p>要求：</p>
+<ul>
+  <li>点击左右箭头，页面向相应方向移动</li>
+  <li>如果到达了最后一张或者第一张，相应的按钮将变成灰色的disable状态</li>
+</ul>
+</section>
+
+
+<section class="card">
+<h2>如何制作走马灯</h2>
+<video width="100%" controls preload="none" poster="assets/videos/carousel_video_bg.jpg">
+	<source src="assets/videos/carousel2.mp4" type="video/mp4">
+</video>
+</section>
+</div>
+</body>
+</html>

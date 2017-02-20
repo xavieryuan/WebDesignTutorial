@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>图标字形（icon font）</h1>
+<section class="card">
+<h2>什么是图标字形（icon font）</h2>
+<p>图标是图形界面中必不可少的设计元素。在传统网页中，图标往往使用图片格式，以img标签或者css background的形式在页面中渲染出来。</p>
+<p>使用img标签显示一个图标：</p>
+<code class="lang-html">&#x3C;img src=&#x22;assets/04/icon_rocket.png&#x22; alt=&#x22;&#x22;&#x3E;
+</code>
+<img src="assets/04/icon_rocket.png" alt="">
+<p>使用css background显示一个图标：</p>
+<code class="lang-css">
+.rocket-bg{
+    background-image: url(icon_rocket.png);
+    background-size: contain;
+    width:50px;
+    height:50px;
+}
+</code>
+<div class="rocket-bg"></div>
+上面的方法虽然可以把图标显示出来，但也有一些显著的缺点：
+<ul>
+    <li>如果图标是位图格式（通常是png），那么放大页面时或者使用高清屏浏览时，图标会变模糊；</li>
+    <li>理论上你也可以使用web矢量格式svg作为图片和背景插入页面，svg虽然能保证清晰度，但浏览器兼容性不好；</li>
+    <li>很多时候，UI上的图标会有多个状态效果用于响应用户的鼠标悬浮、点击等行为，如果使用img或者css background的方式来显示这些图标，就要为每个状态效果输出一个图标文件版本，管理和维护的工作量会翻倍。</li>
+    
+</ul>
+<p class="quote">为了在网页上显示清晰锐利的图标，同时又确保浏览器兼容性，开发人员使用工具将所有图标都打包为一个字体文件，让页面中的图标以字形（而不是位图）方式渲染，这种字形化的图标就是icon font。</p>
+</section>
+<section class="card">
+<h2>如何制作icon font</h2>
+<video width="100%" controls preload="none" poster="assets/videos/icon_font_vidoe_bg.png">
+	<source src="assets/videos/icon_font.mp4" type="video/mp4">
+</video>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/06/styles.css" rel="stylesheet" type="text/css">
+
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/06/myFirstJS.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="wrapper">
+<h1>JavaScript与jQuery简介</h1>
+<section class="card">
+<h2>关于JavaScript</h2>
+<p>JavaScript是前端网页设计与开发中运用得最广泛的脚本语言，可以被用来：</p>
+<ul>
+  <li>增加/删除HTML文档中特定的DOM元素（DOM是Document Object Model的缩写，代表HTML<span class="highlight">树</span>结构，DOM元素指的就是HTML标记）</li>
+  <li>读取或修改特定元素的样式，常用于改变元素的外观</li>
+  <li>读取或修改特定元素的属性或子元素的数据，常用于表单验证</li>
+</ul>
+<p class="quote">学习JavaScript需要了解变量、判断、循环、函数等基本的编程知识，如果没有掌握相关知识，可以先<a href="http://study.163.com/course/introduction.htm?courseId=195001#/courseDetail" target="_blank">到网易学习看看这个教程</a>。</p>
+<p>JavaScript代码可以被直接插入HTML中，但必须使用&lt;script&gt;标签包裹，比如</p>
+<code class="lang-html">&lt;script type=&quot;text/javascript&quot;&gt;alert(&quot;一个JavaScript弹窗警告！！&quot;)&lt;/script&gt;</code>
+<p>上面这个示例的做法有点像直接把CSS代码插入到&lt;style&gt;标签里，但CSS还可以使用&lt;link&gt;标签外链到一个独立的*.css文件，JavaScript可以外链独立的文件，具体形式是：</p>
+<code class="lang-html">&lt;script src=&quot;myJavaScript.js&quot;&gt;&lt;/script&gt;</code>
+<p class="quote">把所有的js代码都写在*.js文件里，这样可以保证内容、表示和逻辑之间有很好的分离度，便于协作和管理。</p>
+<h3>JavaScript的插入位置</h3>
+<p>虽然你可以在html页面的任何位置插入js，但在具体操作时最好遵循W3C的建议，将js集中放在&lt;/head&gt;结束标记的前面，这样做便于管理和维护。</p>
+<p>但是，如果你的js代码中需要引用body内的某个dom元素（比如用js控制某个div的尺寸），你需要注意一下html的加载顺序。html文档的加载是自上而下进行的，如果js需要引用body内的dom元素，而你的js又写在&lt;/head&gt;前面，这里意味着在执行js时，被引用的dom元素还没有加载完成。</p>
+<p class="quote">你应该在js中控制程序的执行顺序，确保主体程序在文档初始化完成后再执行。</p>
+</section>
+<section class="card lbd">
+<h2>模仿上面的例子创建一个JS，让网页每次刷新时冒出一个警告框。</h2>
+<p>警告框的内容是“Hello World！”或者任何你喜欢的内容。</p>
+</section>
+<section class="card">
+<h2>jQuery库</h2>
+<p>本课程的重点是网页设计，所以我们不会深入JavaScript标准语法的学习，而是会强化某个JavaScript库的使用，因为后者在实际中应用得更多。</p>
+<p>JavaScript的库其实是一个*.JS文件，由有经验的JavaScript程序员编写。基于JavaScript库编写JavaScript可以极大地简化流程，而且让自己编写的程序更直观易懂，但程序必须依赖该库才能运行。 </p>
+<p>JavaScript库有很多，有时它们称自己为“插件”或者“框架”，但通常都是<span class="highlight">开源的</span>。本课程主要介绍的库是jQuery，了解它详情可以访问 <a href="http://jquery.com" target="_blank">http://jquery.com</a>。</p>
+<h3>插入jQuery</h3>
+<p>使用jQuery必须首先从其官方网站上下载库文件并链接到你的网页。这是一个*.js文件（jquery.js），它应该被插入到网页的&lt;head&gt;标签里。</p>
+<p>通常，一个网页&lt;head&gt;标签中外链的资源可能很多，比如多个css或者多个js。必须注意，这些资源对应的标签顺序应该是：</p>
+<code class="lang-html">&lt;head&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;mycss1.css&quot;&gt;&lt;/link&gt; &lt;!- 外链样式放前面 -&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;mycss2.css&quot;&gt;&lt;/link&gt; &lt;!- 外链样式放前面 -&gt;
+	&lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;                &lt;!- JS库紧跟样式 -&gt;
+	&lt;script src=&quot;myJS.js&quot;&gt;&lt;/script&gt;                  &lt;!- 自定义的JS放最后 -&gt;&lt;/head&gt;
+</code>
+<p>标签的顺序会影响资源加载的顺序，<span class="highlight">排在上面的标签总是比下面的标签先加载</span>。由于自定义的JS对CSS和JS库都可能会产生依赖关系，所以自定义的JS通常放下面。</p>
+<h3>判断文档的加载</h3>
+<p>需要注意的是，在使用jQuery控制页面的元素的之前，<span class="highlight">必须确认</span>两点：</p>
+<ul>
+  <li>jQuery.js是否已经成功加载（留意对应script标签的位置）</li>
+  <li>拟控制的DOM元素是否被成功读取</li>
+</ul>
+<p>上述两点中任何一点出问题，jQuery代码都可能不起作用。为了确保上述两点，我们要用到$(document).ready()，如下图所示</p>
+<code class="lang-js">$(document).ready(function(e){
+	/* 当文档被完全加载时执行的代码写在这里 */
+})</code>
+<p>在上面的例子中，$(document).ready()是一个<span class="highlight">事件</span>，表示DOM加载完成。 function(e){....}是一个<span class="highlight">事件处理函数</span>，把这个事件处理函数放在ready后的括号中，就相当于将事件处理函数与ready事件绑定。这样，每次ready事件发生时（即每次文档加载完成时），事件处理函数都会执行一次。</p>
+</section><section class="card lbd">
+<h2>试试$(document).ready()</h2>
+<p>控制一个页面在<span class="highlight">DOM加载完成后</span>弹出“Hello World！”警告框。</p>
+
+</section><section class="card">
+<h2>jQuery语法</h2>
+<p>jQuery的语法就像自然语言那样简单。使用jQuery，主要理清三个概念：When，Who，What，即什么元素在什么时候要做什么事情。</p>
+<ul>
+  <li>When: 什么时候开始处理目标对象？（比如文档加载完成、鼠标点击...）</li>
+  <li>Who: 拟通处理的DOM对象是什么？（比如div,h1,p...）</li>
+  <li>What: 如何处理目标元素？（比如变色、变透明度、位置移动、消失....）</li>
+</ul>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>事件</td>
+    <td>DOM元素</td>
+    <td>方法</td>
+  </tr>
+</table>
+<p>上面三个要素可以帮助我们很好地理解jQuery代码，进而帮我们更好地定义。</p>
+<h3>用jQuery定位DOM元素</h3>
+<p>下面的语句执行时元素div.box将从页面中消失。你会发现，jQuery定位元素的方式与<span class="highlight">CSS选择器的定位方式</span>非常类似。</p>
+<code class="lang-js">$(&quot;div.box&quot;).hide()/*选择文档中所有class属性为box的div标记，并隐藏他们*/</code>
+<p>使用“三要素”来分析就是：</p>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td><p>？</p></td>
+    <td>$(&quot;div.box&quot;)</td>
+    <td>hide()</td>
+  </tr>
+</table>
+
+<p>注意：上面的语句中并没有任何代码明确说明When这个要素，那div.box究竟什么时候会被隐藏？或者换句话说，什么时候这行代码会执行？</p>
+<h3>理解上下文</h3>
+<p>当没有明确的代码说明When这个要素时，我们需要从<span class="highlight">代码的上下文</span>中来获取When相关的信息。要找到JS代码的上下文，要关注<span class="highlight">离代码最近的大括号“{}”</span>。</p>
+<code class="lang-js">$(&quot;div.box&quot;).hide();
+</code>
+<p>上面的代码的没有在任何大括号中，因此它<span class="highlight">不会被执行</span>。</p>
+<code class="lang-js">function hidebox(){
+	$(&quot;div.box&quot;).hide();
+}
+</code>
+<p>上面的代码被hidebox函数的大括号包裹着，因此它的When是<span class="highlight">hidebox函数被调用</span>的那一刻。</p>
+<code class="lang-js">$(document).ready(function(e){
+	$(&quot;div.box&quot;).hide();
+})
+</code>
+<p>上面的代码被function(e){...}这个事件处理的大括号包裹着，因此它的When是<span class="highlight">对应的ready事件发生</span>的那一刻。</p>
+<h3>响应交互事件</h3>
+<p>在网页设计与开发中，控制元素响应用户的交互事件是一个很关键的需求。比如，当用户“点击”、“移动”或“拖拽”时，页面会发生相应的变化。下面的例子演示如何绑定一个click事件处理函数，在用户<span class="highlight">点击</span>a.btn时，弹出一个“hello world”窗口。</p>
+<code class="lang-js">$(&quot;a.btn&quot;).on(&quot;click&quot;,function(e){
+alert(&quot;hello world&quot;);
+}); </code>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>点击<br>
+      click</td>
+    <td>浏览器窗口</td>
+    <td>弹出警告窗口<br>
+      alert(&quot;hello world&quot;)</td>
+  </tr>
+</table>
+<p>注意，除非上面的代码被添加到$(document).ready()事件处理中，否则你看不到弹出窗口。因为你必须告诉浏览器，在文档加载完成时，开始绑定点击事件。</p>
+<code class="lang-js">$(&quot;a.btn&quot;).on(&quot;click&quot;,function(e){
+alert(&quot;hello world&quot;);
+}); </code>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>浏览器加载完成<br>
+      $(document).ready()</td>
+    <td>按钮<br>
+      $(&quot;a.btn&quot;)</td>
+    <td>绑定点击事件<br>
+      on(&quot;click&quot;,function(e){...})</td>
+  </tr>
+</table>
+<h3>“链式句点”语法</h3>
+<p>在jQuery中可以使用“链式句点”语法，这种语法可以让“多个What共用1个Who”。</p>
+<code class="lang-js">$(&quot;div.box&quot;).css(&quot;width&quot;,&quot;400px&quot;).css(&quot;height&quot;,&quot;300px&quot;)/*先把宽度设置为400px，再把高度设置为300px*/</code>
+
+</section>
+<section class="card">
+<h2>本节相关视频</h2>
+<h3>关于js</h3>
+<video width="100%" controls preload="none" poster="assets/videos/aboutjs.png">
+	<source src="assets/videos/aboutjs.mp4" type="video/mp4">
+</video>
+<h3>关于jQuery</h3>
+<video width="100%" controls preload="none" poster="assets/videos/aboutjs.png">
+	<source src="assets/videos/aboutjQuery.mp4" type="video/mp4">
+</video>
+<h3>如何绑定事件处理</h3>
+<video width="100%" controls preload="none" poster="assets/videos/bind_event_handler_video_bg.png">
+	<source src="assets/videos/bind_event_handler.mp4" type="video/mp4">
+</video>
+
+
+</section>
+</div>
+</body>
+</html>

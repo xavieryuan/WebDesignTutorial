@@ -1,0 +1,108 @@
+@charset "utf-8";
+/*hover popout*/
+.hover-popout ul{margin:0;padding:0;font-size:0;}
+.hover-popout li{
+    list-style-type:none;
+    width:33.3%;
+    height:200px;
+    display:inline-block;
+    position:relative;
+    overflow: hidden;
+    transition:all 0.2s ease-out 0s;
+}
+.hover-popout .info{
+	background:#fff;
+	position:absolute;
+	width:200px;
+	height:320px;
+    left: 0;
+    top: 0;
+    transform: translate(-10px,-10px);
+	
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    padding:10px;
+	}
+.hover-popout .info>h3{white-space:nowrap;font-size:16px;margin:10px 0;border:none;}
+.hover-popout .info>p{font-size:12px;height:40px;margin:0;}
+
+.hover-popout li:hover{
+    z-index: 9;
+    overflow: visible;
+}
+
+/*drop down menu*/
+nav.dropdownmenu{
+	margin:20px 0;
+	}
+nav.dropdownmenu ul{margin:0px;padding:0px;}
+nav.dropdownmenu ul li{
+	list-style-type:none;
+	display:inline-block;
+	text-align:center;
+	position:relative;
+	}
+nav.dropdownmenu ul li a{
+	background:#333;
+	color:#fff;
+	width:100px;
+	height:40px;
+	line-height:40px;
+	display:inline-block;
+	text-decoration:none;
+	}
+nav.dropdownmenu ul li a:hover{
+	background:#09F;
+	}
+nav.dropdownmenu ul li ul{
+	position:absolute;
+	top:40px;
+	left:0;
+	}
+nav.dropdownmenu ul li ul li{
+	display:block;
+	}
+nav.dropdownmenu ul li ul li a{
+	background:#999;
+	}
+	
+/*菜单A专有样式*/
+#menuA ul{
+	/*height:70px;*/
+	overflow:hidden;
+	-webkit-transition: height 0.2s ease-out 0s;
+	}
+
+
+#jqbardemo{
+	background:#F60;
+	color:#fff;
+	width:100px;
+    height:20px;
+    transition: all 0.5s ease-out;
+	}
+#jqbardemo.large{
+    width:400px;
+    height:300px;
+}
+#jqbardemo2{
+	background:#F60;
+	color:#fff;
+	width:150px;
+    height:20px;
+    transition: all 0.5s ease-out;
+	}
+#jqbardemo2.long{
+	width:400px;
+	}
+#jqbardemo2.tall{
+	height:400px;
+	}
+#css3bardemo{
+	background:#F60;
+	color:#fff;
+	width:150px;
+	transition: width 0.5s ease-out 0s;
+	}
+#css3bardemo:hover{
+	width:400px;
+	}

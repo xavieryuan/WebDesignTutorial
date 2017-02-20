@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>尺寸控制</h1>
+<section class="card">
+<h2>盒模型</h2>
+<p>在使用HTML构建图形界面时，计算和控制标记元素尺寸是非常关键的。对于任何按block或inline-block模式渲染的元素来说，浏览器在计算其尺寸时，会遵循一个特定规则，这个规则可以用“<span class="highlight">盒模型（box model）</span>”来形象的表述。</p><figure><img src="assets/03/boxmodel.png" /><figcaption>盒模型示意图</figcaption></figure>
+<p>在盒模型中，元素的尺寸受到三个因素的影响：内边距（padding），外边距（margin）和边框（border）。</p>
+<ul>
+  <li>边框：元素的一个边框，有厚度，由CSS中的border属性控制</li>
+  <li>内边距：元素边框与其内部子元素的间隙，由CSS中的padding属性控制</li>
+  <li>外边距：元素与元素之间的间隙，由CSS中的margin属性控制。</li>
+</ul>
+<p>当border，padding和margin等属性变化时，元素的尺寸就会发生变化。</p>
+<code class="lang-css">div.box1{
+	width:100px;
+	height:100px;
+	background:#FF0000;
+	border: 5px solid #03C;
+	padding: 10px;
+	margin:10px;
+	}
+div.box2{
+	width:100px;
+	height:100px;
+	background:#9C0;
+	border: 5px solid #F96;
+	padding: 10px;
+	margin:9px;
+	}
+</code>
+<div class="box1">box1</div>
+<div class="box2">box2</div>
+</section>
+<section class="card">
+<h2>切换盒模型</h2>
+<p>上面讨论了一些影响元素高和宽的因素，包括padding, margin, border和 元素的内容尺寸。你可能会产生这样的疑惑，在CSS中，我们可以通过width和height来定义元素的尺寸，但如果同时又定义了padding,  border或者调整了元素内容子元素的尺寸，那么元素的实际尺寸究竟是多少，我们必须小心计算。</p>
+<p class="quote">你知道吗，不同的浏览器会使用不同的默认方式定义CSS中的width和height，这给网页的设计开发增加了很多烦恼。</p>
+<p>还记得前面提到了盒模型概念么，不同的浏览器默认会使用不同的盒模型渲染元素，这两种分别是：</p>
+<ul>
+  <li><span class="highlight">content-box</span>，即width和height的值仅包括内容元素。这意味着即使在CSS中固定了width和height，改变padding和border的粗细同样会改变到元素实际占用的空间。</li>
+  <li><span class="highlight">border-box</span>，即width和height的值包含了内容元素、padding以及border。这意味着在CSS中固定了width和height后，改变border不会改变元素实际占用的空间。</li>
+  </ul>
+<figure><img src="assets/03/contentbox_and_borderbox.png" alt="contentbox_and_borderbox">
+<figcaption>border-box 与 content-box</figcaption>
+</figure>
+<p class="quote">旧版的Internet Explorer默认使用 border-box模型</p>
+<p>不论content-box还是border-box，在不同的使用情况下都有自己独特的优势。对于现代网络浏览器，可以通过CSS的box-sizing属性来切换渲染元素所采用的盒模型。</p>
+<code class="lang-css">div.contentbox{
+	box-sizing:content-box;
+}
+div.borderbox{
+	box-sizing:border-box;
+}</code>
+<p>了解更多box-sizing，可以前往<a href="https://developer.mozilla.org/en-US/docs/CSS/box-sizing" target="_blank">MDN</a>.</p>
+</section>
+<section class="card">
+<h2>内容的溢出和剪裁</h2>
+<p>设想一下，对于一个互相嵌套的父子元素来说，如果CSS定义的子元素尺寸比父元素尺寸更大，那么父元素的实际显示尺寸会怎样？</p>
+<p>在CSS中，可以使用overflow属性来控制这种内容的溢出。</p>
+<code class="lang-css">overflow:hidden;/*子元素不会完整显示，溢出的部分会被隐藏*/</code>
+<code class="lang-css">overflow:scroll;/*子元素不会完整显示，但界面上会显示一个滑条，通过滑条用户可以拖动浏览子元素的溢出部分*/</code>
+<code class="lang-css">overflow:visible;/*子元素会完整显示，会从父元素溢出*/</code>
+<code class="lang-css">overflow:auto;/*如果定义了父元素的高或宽，则会采用scroll模式；如果未定义父元素的高或宽，则会将父元素“撑大”*/</code>
+</section>
+<section class="card">
+<h2>auto值与百分比值的计算</h2>
+<p>在定义标记元素的尺寸时，除了设置固定的像素值，还可以设置auto值和百分比值。</p>
+<h3>width和height的auto值</h3>
+<code class="lang-css">div.box1{
+width:auto;
+height:auto;
+background:#39F;
+color:#fff;
+}</code>
+<div class="box1">box1</div>
+<p>上面的例子将div.box的width和height设置成auto，这意味着：</p>
+<ul>
+  <li>元素的宽度将自动充满父级元素留给它的可用宽度</li>
+  <li>元素的高度将由子元素显示所需要的最低高度决定，如果没有子元素，那么<span class="attentionwords">高度就等于零</span>。</li>
+</ul>
+<h3>width和height的百分比值</h3>
+<code class="lang-css">div.box2{
+width:50%;
+height:50%;
+background:#39F;
+color:#fff;
+}</code>
+<div class="box3"><div class="box2">box2</div></div>
+<p>上面的例子将div.box的width和height设置成一个百分比值，而不是固定的像素值<span class="attentionwords"></span>，这意味着：</p>
+<ul class="tips">
+  <li>元素的宽度将按照一个特定参照物的百分比取值，而这个特定的参照物是从该元素向body元素追溯所遇到的第一个<span class="attentionwords"></span>定义了width属性且width不等于auto的父元素。如果未找到任何符合的元素，则将body元素作为参照物。</li>
+  <li>元素的高度将按照一个特定参照物的百分比取值，而这个特定的参照物是从该元素向body元素追溯所遇到的第一个<span class="attentionwords"></span>定义了height属性且height不等于auto的父元素。如果未找到任何符合的元素，则高度由子元素显示所需要的最低高度决定。</li>
+</ul>
+<p class="quote">上述参照物的选择规则是不是让你想起了position参照物的选择规则呢？</p>
+
+</section>
+
+</div>
+</body>
+</html>

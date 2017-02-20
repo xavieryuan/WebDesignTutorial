@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>字体</h1>
+<section class="card">
+<h2>不那么友好的Web 字体</h2>
+<p>与印刷比起来，网页设计中的字体与编排实在是太痛苦了：</p>
+<ul>
+  <li>不能随心所欲的使用各种字体</li>
+  <li>不能精确控制排版细节（字符间隙、对齐、绕排）</li>
+  <li>总被字符编码找麻烦</li>
+  <li>糟糕的双语混排</li>
+  <li>更多...</li>
+</ul>
+<p class="quote">尽管问题很多，HTML仍然是目前图形界面设计中复杂图文编排的最佳解决方案，许多阅读类应用都采用HTML技术进行布局。</p>
+</section>
+<section class="card">
+<h2>设置字体</h2>
+<p>给整个body设置一个字体集合而不是一个单独的字体:</p>
+<code class="lang-css">body{
+	font-family:Verdana, Geneva, sans-serif;
+}</code>
+<p>设置了字体并不意味着用户在屏幕前就能看到它，除非你能确保客户端电脑也安装了这种字体。通过指定一组字体集合（如上），浏览器会按照集合中的顺序去加载字体，首先试试Verdana，如果客户端没有安装，就试试Geneva，如果还没有装就试试Sans-serif...如果都没有就使用系统默认字体。</p>
+<p>设置中文字体:</p>
+<code class="lang-css">@charset "utf-8";
+body{
+	font-family:&quot;微软雅黑&quot;;
+}</code>
+<p>通过@charset &quot;utf-8&quot;;这行代码，浏览器会使用utf-8编码来解析CSS文档，这对于代码中包含中文字符（上例为“微软雅黑”）的CSS至关重要。对于某些非拉丁字符来说，如果不使用utf-8编码，浏览器就无法识别。</p>
+<p class="quote">为了保险起见，实践中往往会统一在CSS文档最前面加上@charset &quot;utf-8&quot;，无论是否CSS中会包含中文字符。</p>
+</section>
+<section class="card">
+<h2>嵌入字体</h2>
+<p>使用@font-face可以让浏览器自动从网络服务器下载字体文件，并在网页中显示出客户端电脑没有安装的字体。</p>
+<code class="lang-css">@font-face {
+	font-family: "Sansation Light";
+	src: url("Sansation_Light.ttf"); 
+}
+</code>
+<p>然后对特定的选择器应用Sansation Light这个字体</p>
+<code class="lang-css"> div.sansation {
+	font-family: "Sansation Light", serif;
+	font-size:32px;
+	font-weight:bold;
+}
+</code>
+<p>看看效果：</p>
+<div class="sansation">Sansation Light</div>
+<p>在上面的例子中，浏览器会首先在本地客户端寻找“Sansation Light”字体，如果本地未安装该字体，就会通过@font-face到某个地址去下载该字体。</p>
+<p>通常下载是需要时间的，在字体下载完成之前，有的浏览器会临时使用系统默认字体来渲染，下载完成后再使用下载字体；有的浏览器则会不显示任何内容，只到字体下载完成。</p>
+<p>现在我们来看看中文字体的例子，你可以使用Chrome的调试工具来查看下来字体的CSS样式代码，这个中文字体的下载路径使用了相对链接。</p>
+<div class="yuego">悦黑试用版字体，造字工坊版权所有。</div>
+<h3>字体格式与法律问题</h3>
+<p>一般来说，你可以在网页中嵌入符合工业标准的TrueType字体或OpenType字体（即后缀为*.ttf和*.otf格式的字体），但可能面临法律问题。因为将这些字体托管到服务器上以后，理论上所有的网页都可以自由（免费）引用，这损害了字体开发者的利益。</p>
+<p>字体文件的压缩和编码也是一个关键的问题。为此，W3C推出了<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format" target="_blank">Web Open Font Format</a>字体标准（*.woff），该字体格式被各大浏览器支持，并且为字体文件提供了更适合网络环境的压缩算法，极大地节省了带宽。</p>
+<h3>使用Google Web Fonts</h3>
+<p><a href="http://www.google.com/fonts/" target="_blank">Google Web Fonts</a> 是谷歌提供的强大而且免费的网络字体服务，允许设计开发人员在他们的网页中嵌入托管在谷歌服务器上的网络字体。</p>
+<p>你可以将这些字体下载下来使用，但推荐的使用方式是直接链接谷歌服务器上的字体资源。毕竟，绝大多数用户从谷歌服务器上下载字体，比从你的私人服务器上下载字体要<span class="highlight">快得多</span>。</p>
+<h3>嵌入中文字体？三思！</h3>
+<p>你可能发现了，Google Web Fonts里好像没有中文字体。别以为谷歌不喜欢中文，要知道，嵌入中文字体很多时候<span class="highlight">不是一个好主意</span>！中文字体可能有几兆大小，对数据下载的要求比英文字体高得多，而且目前市面上许多中文字体的字符集不完整，碰到生僻字其显示结果可能是“<img src="assets/04/fonterror.png" width="63" height="23">”。</p>
+<p>在某些情况下，你可能也要考虑嵌入中文字体。HTML如今被用于开发各种移动APP，当利用PhoneGap等中间件开发基于HTML5的Hybrid App时，可以把字体与其他资源一起打包统一通过应用市场分发给用户。用户在下载APP的同时就已经下载了字体，打开APP无需等待即可看到完整的字体效果。</p>
+</section>
+<section class="card">
+<h2>CSS text-shadow</h2>
+<p>CSS支持文本投影效果，使用起来也很简单，比如：</p>
+<code class="lang-css">div.shadowtitle1{
+	font-size:2em;
+	font-weight:bold;
+	color:#fff;
+	background:#666;
+	padding:10px;
+	text-align:center;
+	text-shadow:#000 0 1px 4px;/*投影*/
+	}
+div.shadowtitle2{
+	font-size:2em;
+	font-weight:bold;
+	color:#333;
+	background:#ccc;
+	padding:10px;
+	text-align:center;
+	text-shadow:#fff 0 1px 0;/*投影*/
+	}</code>
+<div class="shadowtitle1">投影效果1</div>
+<div class="shadowtitle2">投影效果2</div>
+<p>使用投影需要注意</p>
+<ul>
+  <li>要定义合理的“全局”光源关系，如果同一个页面上不同位置的光源关系不一致，投影看起来就会很奇怪。</li>
+  <li>在同一个text-shadow里可以几组不同的投影定义形成复合投影效果，不同的投影定义使用单字节逗号分隔即可。</li>
+</ul>
+</section>
+<section class="card">
+<h2>理解em</h2>
+<p>之前在定义字体尺寸时，我们经常用到px（像素）这个单位，比如：</p>
+<code class="lang-css">p{font-size:24px;}</code>
+<p>在许多实际应用中，em是比px更合适的字体尺寸单位。em定义了一个相对尺寸，1em指的是1倍当前字体尺寸，1.5em指的是1.5倍当前字体尺寸，以此类推。如果一个元素的当前字体尺寸是12像素，那么1em=12px，1.5em=18px。看看下面这个例子：</p>
+<code class="lang-css">p.looksgood{
+font-size:18px;
+line-height:2em;
+}</code>
+<p class="looksgood">一个很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的段落。</p>
+<p>在这个例子中，p.looksgood将行高定义为2em，也就是字体尺寸的2倍（18*2=36px）。</p>
+<p>虽然屏幕在渲染字体时需要一个精确到像素的具体值，但在很多时候，直接在CSS中为字体设置固定的像素值并不合适。如果用户使用不同分辨率的显示设备（比如标准PC显示器和平板电脑）浏览你的网页，那么采用固定像素值定义的字体在高分辨率的设备上会显示得更小，影响可读性。此时，使用em可以很好地解决这个问题。</p>
+<code class="lang-css">p{font-size:1.5em;}/*这里的1.5em是多少像素？*/</code>
+<p>浏览器对于HTML元素的渲染，会有一个默认的样式定义，这些默认的样式定义被保存在<span class="highlight">user agent stylesheet</span>中。当有专门的CSS定义作用在元素上时，浏览器会使用该定义渲染元素；而如果没有专门的CSS定义，浏览器就会调用默认的样式定义。上例中，因为字体尺寸被定义为1.5em，除此以外没有任何尺寸定义，所以此时的1.5em相当于浏览器默认样式定义中的字体尺寸的1.5倍。</p>
+<p>使用浏览器默认值为基准来定义字体尺寸的最大好处，是因为浏览器默认的样式定义通常兼顾了平台设备最基本的可读性。</p>
+<p class="quote">尽量使用em为单位来定义字体尺寸。</p>
+</section>
+<section class="card lbd">
+<h2>用Google Web Font为下面的HTML设置一个CSS字体并添加投影效果，不要改变HTML。</h2>
+<code class="lang-html">&lt;h1 class=&quot;font-demo&quot;&gt;Google Web Fonts Test&lt;/h1&gt; </code>
+</section>
+
+</div>
+</body>
+</html>

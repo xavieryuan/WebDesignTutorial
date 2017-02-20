@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="assets/js/ui-mouse-follow.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+<h1>UI模式：鼠标跟随</h1>
+<section class="card">
+<h2>理解鼠标跟随</h2>
+<p>鼠标跟随是一个常见并且特别基础的UI模式，许多复杂UI模式的内部都揉杂了鼠标跟随或类似的元素。例如，当你“拖拽”一个窗口并移动鼠标时，窗口会跟随着你的鼠标移动，直到你释放。在触屏界面中，尽管没有“鼠标”，但这种模式似乎无处不在。如果将手指当作一个虚拟的“鼠标”，任何与“拖拽”、“推拉”等动作相关手势，几乎都包含了“鼠标跟随”，如下图所示。</p>
+<figure><img src="assets/images/multi_touch_guesture_icon.jpg" alt="">
+<figcaption>触屏界面中的手势动作。当用户做这些手势时，界面的UI元素会跟随着手势进行变化。</figcaption>
+</figure>
+<p>从输入与反馈的过程看，“鼠标跟随”这类模式与“点击按钮弹出一个窗口”有显著的不同。前者是一个持续触发的过程，即：<span class="highlight">在一个特定的时间段内，用户输入持续触发界面反馈，且输入与反馈按照某种线性关系同步</span>。后者是一个单次触发的过程，即：<span class="highlight">在一个特定的时间节点，对用户的输入进行判断，一旦满足设定的条件（条件可能很复杂），立即触发一次界面的反馈</span>。</p>
+<p class="quote">
+    当你使用jQuery绑定事件处理函数时，需要弄清楚事件背后的机制是“持续触发”，还是“单次触发”。
+</p>
+<p>在jQuery中，诸如“click”、“mouseover”、“mouseout”、“load”等事件通常是单次触发的，而“mousemove”、“scroll”等事件是持续触发的。你可以利用下面的代码看到当你滚动页面时，scroll事件的触发情况。</p>
+   <code class="lang-js">$(document).ready(function(){
+  $(this).on(&quot;scroll&quot;,function(){
+     console.log(&quot;触发了 scrolling！&quot;)
+})
+})
+</code>
+    </section>
+    <section class="card">
+    <h2>获取事件发生的上下文信息</h2>
+    <p>在鼠标跟随中，要让界面中的某个UI元素与鼠标保持位置同步，意味着每次鼠标移动时，你都需要获取鼠标的坐标位置，然后根据这个坐标来更新UI元素的坐标。当鼠标持续移动时，这个“获取鼠标坐标位置-设置UI元素坐标位置”的过程也会被持续触发。</p>
+    <p>在jQuery中，可以通过访问mousemove事件来获取事件发生时鼠标的位置信息，如下所示：</p>
+    <code class="lang-js">$(document).on(&quot;mousemove&quot;,function(e){
+    var x = e.pageX;
+    var y = e.pageY;
+    console.log(&quot;鼠标位置为(&quot;+x+&quot;,&quot;+y+&quot;)&quot;);
+})
+</code>
+<p>如果你在绑定事件处理函数时传入一个参数e，jQuery就会将事件发生时与事件相关的各类信息保存在这个参数里供你调用，其中就包括鼠标在页面上的坐标e.pageX和e.pageY。你可以给这个参数设置不同的名称，只要符合变量定义的规则即可。但一般来说，为了让人更好地理解这个参数的意义，会将其命名为“e”、“evt”或者“event”。</p>
+<p>接下来要做的，就是将UI元素的坐标值，设置为鼠标的坐标值</p>
+<code class="lang-js">$(document).on(&quot;mousemove&quot;,function(e){
+    var x = e.pageX;
+    var y = e.pageY;
+    console.log(&quot;鼠标位置为（&quot;+x+&quot;,&quot;+y+&quot;)&quot;);
+    $(&quot;.redball&quot;).css({&quot;transform&quot;:&quot;translate(&quot;+x+&quot;px,&quot;+y+&quot;px)&quot;})
+})
+</code>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>移动鼠标时</td>
+    <td>$(".redball")</td>
+    <td>调整css的translateX与translateY，使其分别等于mousemove事件的e.pageX与e.pageY
+    </td>
+  </tr>
+  
+  <tr>
+    <td>文档加载完成时</td>
+    <td>$(document)</td>
+    <td>绑定mousemove事件处理
+    on("mousemove",function(){})
+    </td>
+  </tr>
+</table>
+</section>
+<section class="card">
+<h2>如何实现鼠标跟随</h2>
+<video width="100%" controls preload="none" poster="assets/videos/mouse_follow.png">
+	<source src="assets/videos/mouse_follow.mp4" type="video/mp4">
+</video>
+</section>
+
+</div>
+<div class="redball"></div>
+</body>
+</html>

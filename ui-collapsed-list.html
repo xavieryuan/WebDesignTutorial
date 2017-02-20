@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/08/styles.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/08/script.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>UI模式：折叠列表</h1>
+<section class="card">
+<h2>折叠列表的实现机制</h2>
+<p>当页面的信息元素比较复杂，而呈现信息的空间又比较有限时，通常会使用折叠列表来隐藏部分复杂的信息，如下图所示：</p>
+<figure><img src="assets/09/expand_list_example.png" />
+<figcaption>Yahoo汽车栏目使用了折叠列表</figcaption>
+</figure>
+<h3>HTML结构示意</h3>
+<p>下图是一个列表单元的HTML结构，其中：</p>
+<ul>
+  <li>每一个列表条目是一个li；</li>
+  <li>条目标题使用了h3；</li>
+  <li>控制列表折叠的小按钮使用了div a（具体应用中你也可以用别的，比如span）；</li>
+  <li>列表的正文内容使用了p（具体应用中会根据内容要求变化，比如增加图片或表格）。</li>
+</ul>
+<figure><img src="assets/09/expand_list_html.png" />
+<figcaption>HTML结构示例</figcaption>
+</figure>
+<p>完整的HTML结构如下</p>
+<code class="lang-html">&lt;div class=&quot;CollapsedListDemo&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3&gt;标题&lt;/h3&gt;
+&lt;div class=&quot;toolbar&quot;&gt;&lt;a href=&quot;#&quot;&gt;+&lt;/a&gt;&lt;/div&gt;
+&lt;p class=&quot;maintext collapsed&quot;&gt;正文&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h3&gt;标题&lt;/h3&gt;
+&lt;div class=&quot;toolbar&quot;&gt;&lt;a href=&quot;#&quot;&gt;+&lt;/a&gt;&lt;/div&gt;
+&lt;p class=&quot;maintext collapsed&quot;&gt;正文&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h3&gt;标题&lt;/h3&gt;
+&lt;div class=&quot;toolbar&quot;&gt;&lt;a href=&quot;#&quot;&gt;+&lt;/a&gt;&lt;/div&gt;
+&lt;p class=&quot;maintext collapsed&quot;&gt;正文&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</code>
+<h3>布局</h3>
+<figure><img src="assets/09/expand_list.png" />
+<figcaption>设计效果图</figcaption>
+</figure>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td rowspan="2">点击.toolbar a</td>
+    <td>.maintext</td>
+    <td>显示（高度延展到最大值或者display改为block）</td>
+  </tr>
+  <tr>
+    <td>.toolbar a</td>
+    <td>显示为“ -” </td>
+  </tr>
+  <tr>
+    <td rowspan="2">点击.toolbar a</td>
+    <td>.maintext</td>
+    <td>显示（高度延展到最小值或者display改为none）</td>
+  </tr>
+  <tr>
+    <td>.toolbar a</td>
+    <td>显示为“ +” </td>
+  </tr>
+  <tr>
+    <td>文档加载完成时</td>
+    <td>.toolbar a</td>
+    <td>绑定点击事件处理</td>
+  </tr>
+</table>
+<div class="CollapsedListDemo">
+	<ul>
+    	<li>
+       	  <h3>标题</h3>
+            <div class="toolbar"><a href="#">+</a></div>
+            <p class="maintext collapsed">正文正文正文正文正文正文</p>
+        </li>
+        <li>
+       	  <h3>标题</h3>
+            <div class="toolbar"><a href="#">+</a></div>
+          <p class="maintext collapsed">正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
+        </li>
+        <li>
+       	  <h3>标题</h3>
+            <div class="toolbar"><a href="#">+</a></div>
+          <p class="maintext collapsed">正文正文正文正文正文正文</p>
+        </li>
+    </ul>
+</div>
+<p>小提示</p>
+<ul>
+  <li>折叠列表的按钮使用了“开关”机制；</li>
+  <li>有时，展开某个项目后，其他已展开项目可能会自动折叠；</li>
+  <li>如果展开的内容比长（比如，接近一个显示屏的高度），展开和收纳时页面的变化会非常强烈，这种情况下最好不要使用折叠列表；</li>
+  <li>为了让展开和收纳时的页面变化更加连续，减少对用户的视觉干扰，可以添加一个展开/收纳的动画效果；</li>
+  <li>在展开和收纳时，要尽量减少列表高度的变化对页面整体布局的影响</li>
+</ul>
+
+</section>
+
+<section class="card">
+<h2>本节相关视频</h2>
+<ul>
+<li><a href="assets/videos/collapse_list.mp4" target="_blank">制作折叠列表</a></li>
+</ul>
+</section>
+</div>
+</body>
+</html>

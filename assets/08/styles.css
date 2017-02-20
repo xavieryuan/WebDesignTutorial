@@ -1,0 +1,160 @@
+@charset "utf-8";
+
+/*以上样式让课件更美好*/
+/**carousel**/
+#carousel{
+	position:relative;
+	width:550px;
+	height:300px;
+	}
+
+#carousel ul{
+	margin:0;padding:0
+	}
+#carousel ul li{
+	list-style-type:none;
+	display:inline-block;
+	}
+#carousel nav{
+	position:absolute;
+	bottom:20px;
+	right:50px;
+	z-index:1;
+	}
+#carousel nav ul li a{
+	width:100px;
+	text-align:center;
+	display:inline-block;
+	background:#39F;
+	color:#fff;
+	text-decoration:none;
+	}	
+#carousel nav ul li a:hover{
+	background:#F90;
+}
+
+#cnt{
+	width:550px;
+	height:300px;
+	border:#666 1px solid;
+	overflow:hidden;
+	position:relative;
+	}
+#cnt ul{
+	width:1650px;
+	height:300px;
+	transition:all 0.5s ease-out 0s;
+	}
+#cnt ul li img{width:550px;height:300px;}
+
+/** transform***/
+
+.wrapperbox{
+	border:#333 2px dotted;
+	width:200px; height:200px;
+	-webkit-perspective: 600px;
+	perspective: 600px;
+	}
+.innerbox{
+	width:200px; height:200px;
+	background:#06C;
+	color:#fff;
+	opacity:0.7;
+	-webkit-backface-visibility:hidden;	
+	backface-visibility:hidden;	
+	}
+.y45{
+	-webkit-transform: rotateY( 45deg );
+	transform: rotateY( 45deg );
+	}
+.y135{
+	-webkit-transform: rotateY( 135deg );
+	transform: rotateY( 135deg );
+	}
+/***card reversal***/
+#flip-card{
+	-webkit-perspective: 600px;
+	color:#fff;
+	width:200px; height:200px;
+	position:relative;
+	}
+#a-side{
+	-webkit-transform: rotateY( 0deg );
+	transform: rotateY( 0deg );
+	-webkit-transition:all 0.5s linear 0s;
+	transition:all 0.5s linear 0s;
+	width:200px; height:200px;
+	background:#69F;
+	-webkit-backface-visibility:hidden;
+	backface-visibility:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:hidden;
+	}
+#b-side{
+	-webkit-transform: rotateY( -180deg );
+	transform: rotateY( -180deg );
+	-webkit-transition:all 0.5s linear 0s;
+	transition:all 0.5s linear 0s;
+	-webkit-backface-visibility:hidden;
+	backface-visibility:hidden;
+	width:200px; height:200px;
+	background:#9C0;
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:hidden;
+	}
+
+div.CollapsedListDemo{
+	width:50%;
+	}
+
+div.CollapsedListDemo ul{
+	margin:0;
+	padding:0;
+	}
+div.CollapsedListDemo ul li{
+	list-style-type:none;
+	position:relative;
+	}
+div.CollapsedListDemo ul li h3{
+	height:30px;
+	background:#666;
+	color:#fff;	
+	padding:5px;
+	margin:0;
+	border-top:#CCC 1px solid;
+	}
+div.CollapsedListDemo ul li .toolbar{
+	position:absolute;
+	top:10px;
+	right:10px;
+	}
+div.CollapsedListDemo ul li .toolbar a{
+	text-decoration:none;
+	color:#000;
+	background:#fff;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	text-align:center;
+	line-height:20px;
+	vertical-align:middle;
+	}
+div.CollapsedListDemo ul li .maintext{
+	background:#999;
+	padding:10px;
+	color:#fff;
+	margin:0;
+	height:150px;
+	-webkit-transition:height 0.3s ease-out 0s;
+	transition:height 0.3s ease-out 0s;
+	overflow:hidden;
+	}
+div.CollapsedListDemo ul li .collapsed{
+	height:0;
+	padding:0 10px;
+	}	
+	

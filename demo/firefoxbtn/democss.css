@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+a.firefoxbtn{
+	color:#fff;
+	font-weight:bold;
+	display:inline-block;
+	height:140px;
+	padding:60px 20px 0 50px;
+	background:url(img/bg_repeatx.png) repeat-x center;
+	position:relative;
+	margin:0 20px 0 90px;
+	text-decoration:none;
+	box-sizing:border-box;
+	font-family:Verdana, Geneva, sans-serif;
+	}
+	
+a.firefoxbtn:before{
+	content:"";
+	position:absolute;
+	width:147px;
+	height:141px;
+	background:url(img/firefox.png);
+	top:0;
+	left:-90px;
+	}
+a.firefoxbtn:after{
+	content:"";
+	position:absolute;
+	width:147px;
+	height:140px;
+	background:url(img/bg_right.png) no-repeat center right;
+	top:0;
+	right:-17px;
+	}
+a.firefoxbtn:hover{
+	background:url(img/bg_repeatx_hover.png) repeat-x center;
+	}
+a.firefoxbtn:hover:after {
+	background:url(img/bg_right_hover.png) no-repeat center right;
+	}

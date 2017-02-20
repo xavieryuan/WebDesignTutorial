@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/02/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div class="wrapper">
+<h1>CSS选择器</h1>
+<section class="card">
+<h2>选择器的种类</h2>
+<p>基本的选择器有以下几种：</p>
+<ul>
+  <li>标签选择器：通过标记名称来筛选标记 
+        <code class="lang-css">p{color:red}</code>
+      
+  </li>
+  <li>class选择器：通过标记的class属性值来筛选标记
+    <code class="lang-css">.myclass{color:red}</code>
+  </li>
+  <li>id选择器：通过标记的id属性值来定位标记
+    <code class="lang-css">#myid{color:red}</code>
+  </li>
+</ul>
+<p class="p">如果多个选择器的样式规则都是一样的，你可以这样写：</p>
+<code class="lang-css">p, .myclass, #myid {color:red}</code>
+</section>
+<section class="card lbd">
+<h2>按下面的代码创建一个HTML和一个CSS，再将他们关联起来，看看会发生什么。</h2>
+<code class="lang-html">&lt;body&gt;
+&lt;h1 class=&quot;myclass&quot;&gt;这是开心的一级标题&lt;/h1&gt;
+&lt;p&gt;这是一个有趣的段落&lt;/p&gt;
+&lt;h2 id=&quot;myid&quot;&gt;这是调皮的二级标题&lt;/h2&gt;
+&lt;/body&gt;</code>
+<code class="lang-css">p{color:red}
+.myclass{color:blue}
+#myid{color:green}</code>
+</section>
+<section class="card lbd">
+<h2>伪类选择器</h2>
+<p>使用伪类选择器可以定义标记在不同状态下的样式。</p>
+<p>比如，与&lt;a&gt;标记相关的一系列伪类可用来控制链接的不同状态</p>
+<code class="lang-html">&lt;p&gt;&lt;a href=&quot;#&quot;&gt;这是一个带链接的例句。&lt;/a&gt;&lt;/p&gt;</code>
+<code class="lang-css">a:link{color:#ff0000}		/*未访问的链接*/
+a:visited{color:#00ff00}	/*已访问的链接*/
+a:hover{color:#ff00ff}		/*当鼠标悬停在链接上*/
+a:active{color:#0000ff}		/*当鼠标按住链接不松手*/</code>
+<p>:first-child, :last-child和:nth-child可以被用来定位一组同类兄弟元素中特定序列位置的元素。</p>
+<code class="lang-html">&lt;ul&gt;<br>	&lt;li&gt;列表1&lt;/li&gt;<br>	&lt;li&gt;列表2&lt;/li&gt;<br>	&lt;li&gt;列表3&lt;/li&gt;<br>	&lt;li&gt;列表4&lt;/li&gt;
+	&lt;li&gt;列表5&lt;/li&gt;<br>&lt;/ul&gt;</code>
+<code class="lang-css">li:first-child{color:blue}		/*同一组li中的第一个*/
+li:last-child{color:green}		/*同一组li中的最后一个*/
+li:nth-child(2n){color:red}		/*同一组li中的第偶数个*/</code>
+</section>
+<section class="card lbd">
+<h2>派生选择器</h2>
+<p>所谓派生选择器，就是将几种选择器综合到一起使用，比如</p>
+<p> 选择所有具有class=“classname” 属性的P标记：</p>
+<code class="lang-css">p.classname {...}</code>
+<p>选择所有嵌套在具有id=“idname”属性标记内的标记</p>
+<code class="lang-css">#idname p {...}</code>
+<p> 选择所有嵌套在 div标记内部的P标记</p>
+<code class="lang-css">div p {...}</code>
+<p> 选择所有嵌套在 div标记内部的p标记，且p必须是div的直接子元素</p>
+<code class="lang-css">div > p {...}</code>
+<p> 选择所有嵌套在class=&quot;class1&quot;标记中的class=&quot;class2&quot;标记</p>
+<code class="lang-css">.class1 .class2 {...}</code>
+<p class="quote">
+    更多选择器的用法，请参考：<br><a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank">http://www.w3schools.com/cssref/css_selectors.asp</a>
+</p>
+</section>
+
+<section class="card lbd">
+<h2>CSS继承与优先级</h2>
+<p>父级别标记的CSS样式有时会被子级别继承（如果该样式对子元素有意义的话），比如有这样一段HTML和CSS：</p>
+<code class="lang-html">&lt;p&gt;一个段落中的&lt;span&gt;文字&lt;/span&gt;&lt;/p&gt;
+</code>
+<code class="lang-css">p{color:red}
+</code>
+<p>上面整个行文本都会是红色，因为作为子元素的span继承了p的样式。</p>
+<p>有时候，大量的CSS定义会互相冲突，那么到底浏览器会按照什么样的规则来渲染呢？考虑下面这个例子：</p>
+<code class="lang-html">&lt;p&gt;一个段落中&lt;span class=&quot;s&quot;&gt;红色&lt;/span&gt;的文本&lt;/p&gt;</code>
+<code class="lang-css">span{color:red}
+.s{color:green}</code>
+</section>
+<section class="card">
+<h2>优先级规则</h2>
+<p>“高级”选择器定义的样式规则会覆盖“低级”选择器定义的样式规则，优先级由低到高排列如下：</p>
+<ul>
+  <li> 标签选择器</li>
+  <li> 派生的标签选择器</li>
+  <li> 类选择器</li>
+  <li> 派生的类选择器</li>
+  <li> ID选择器</li>
+  <li> 元素内定义的样式</li>
+  </ul>
+<p class="quote">这么复杂？这怎么知道哪个样式规则会覆盖（或被覆盖）？找Chrome帮忙吧！</p>
+<figure><img src="assets/02/chrome_css_stack.png" alt="在Chrome中查看样式优先级">
+<figcaption>在Chrome中查看样式优先级</figcaption>
+</figure>
+</section>
+<section class="card lbd">
+<h2>选择器练习</h2>
+<figure><img src="assets/02/colorsample.png"></figure>
+<p>将下列HTML代码定义成上图所示样式，不得改变HTML结构，应该怎样写CSS？</p>
+<code class="lang-html">&lt;p&gt;这是一个&lt;span&gt;红色&lt;/span&gt;的例句。&lt;/p&gt;<br>&lt;p class=&quot;p&quot;&gt;这是一个&lt;span&gt;绿色&lt;/span&gt;的例句。&lt;/p&gt;<br>&lt;p class=&quot;p&quot;&gt;这是一个&lt;span class=&quot;s&quot;&gt;紫色&lt;/span&gt;的例句。&lt;/p&gt;<br>&lt;p id=&quot;p4&quot;&gt;这是一个&lt;span&gt;粉色&lt;/span&gt;的例句。&lt;/p&gt;</code>
+</section>
+<section class="card lbd">
+<h2>CSS基础测验</h2>
+<p> <a href="http://www.w3school.com.cn/quiz/quiz.asp?quiz=css">http://www.w3school.com.cn/quiz/quiz.asp?quiz=CSS</a></p>
+</section>
+<h1>参考文献</h1>
+
+<section class="card">
+<p> <a href="http://www.w3school.com.cn/css/index.asp">http://www.w3school.com.cn/CSS/index.asp</a></p>
+</section>
+</div>
+</body>
+</html>

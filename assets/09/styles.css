@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+div.logo{
+	width:30%;
+	}
+div.logo img{
+	max-width:100%;
+	min-width:100px;
+	}
+/*flex box*/
+.flexbox{	
+	display:-webkit-flex;
+	display:flex;
+	}
+.flexbox div{
+	height:80px;
+	color:#fff;
+	text-shadow:0 0 4px rgba(0,0,0,0.2)
+	}
+.flexbox .noneflex{
+	width:200px;
+	-webkit-flex:none;
+	flex:none;
+	background:#6CF;
+	}
+.flexbox .flex1{	
+	-webkit-flex:1;
+	flex:1;
+	background:#FC0;
+	}
+.flexbox .flex2{	
+	-webkit-flex:2;
+	flex:2;
+	background:#9C0;
+	}
+
+/*标准情况下，div.box的宽度为500px*/
+div.box{
+	width:500px;
+	height:500px;
+	background:#09F;
+	color:#fff;
+	-webkit-transition:all 0.5s ease-out;/**/
+	} 
+	
+/*如果浏览器窗口宽度小于等于600px，那么div.box的宽度就应变为300px*/
+@media screen and ( max-width: 600px ) {
+	div.box {
+		width:300px;
+		background:#F60;
+	}
+}
+	
+	

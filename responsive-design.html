@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/09/styles.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/09/script.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="wrapper">
+<h1>响应式设计与media query</h1>
+<section class="card">
+<h2>传统范式</h2>
+
+<p>传统的网页设计主要针对<span class="highlight">桌面电脑环境</span>。因为用户大都使用桌面电脑上网，配备标准化的鼠标、键盘作为输入设备，并且使用标准分辨率的显示器作为输出设备。在网页设计中，这些输入与输出设备是重要考量因素。</p>
+<figure><img src="assets/09/pc.jpg" />
+<figcaption>传统的网页设计主要针对桌面电脑环境</figcaption>
+</figure>
+<p>许多网页（或者扩大来说，用户图形界面）的设计，都与这些输入、输出设备的技术规格密切相关，并形成了一定的范式。以布局为例，网页设计师考虑绝大多数用户使用的屏幕分辨率为1024×768（早些时候是800×600），所以网页宽度往往设定在<span class="highlight">950-970</span>像素之间（留出必要的边距和侧边滑条的位置），否则页面内容就会拥挤，影响美观；而页面<span class="highlight">首屏内容</span>（比如首页的主题海报、导航菜单等元素）的高度加上浏览器和操作系统的UI元素（比如地址栏和系统状态栏）的高度要小于768，否则首屏上的重要内容就可能无法完整显示，降低用户体验和可用性。</p>
+<figure><img src="assets/09/yahoo.jpg" />
+<figcaption>Yahoo的首页刚好适配1024*768分辨率</figcaption>
+</figure>
+<p>除布局之外，用户界面模式（UI Pattern）的选择与输入设备和显示尺寸关系也十分密切，“标签页”、“弹出窗口”、“下拉菜单”、“上下文菜单”、“走马灯”等模式都是在传统的PC上非常经典的模式。<span class="highlight">但是当输入设备与显示规格变化之后，这些模式都要相应的调整</span>，比如调整热区尺寸或移动元素的位置等。如果输入与显示的变化特别大，简单的调整无法适应这种变化，此时就必须更换其他模式。</p>
+</section>
+<section class="card">
+<h2>跨平台的挑战</h2>
+<p>随着移动设备和触屏设备的流行，越来越多的网页设计与开发面临着日益复杂的“<span class="highlight">跨平台问题</span>”。虽然互联网本身就被定义为一个跨平台的生态系统，但要允许不同的硬件、软件、显示设备和输入设备都接入其中，设计和开发就会变得十分复杂。</p>
+<p>在互联网向移动互联网演进的格局下，越来越多的用户开始使用平板电脑和智能手机访问互联网。设计师和开发人员不但要考虑显示尺寸的多元化，还要考虑在鼠标点击之外如何方便用户通过触摸、滑动以及其他交互手势来浏览与控制。</p>
+<p class="quote">跨平台，是web设计开发人员需要征服的“终极目标”。</p>
+<p>响应式设计（Responsive Design）正是在这样一个大前提下被提出。不同的用户可能使用不同规格的软硬件设备，在不同的上下文场景中浏览网页。响应式设计要求设计开发人员必须考虑到各种可能的使用情景，并让网页的界面根据获取到的上下文信息作出适应性变化和调整，换句话说，对不同的需求做出响应。</p>
+<p>响应式设计的目标很宏大，而目标的实现离不开上下文信息的获取。理论上，获得的上下文信息越丰富，设计开发人员就越能准确的定义如何响应。但目前互联网浏览器的功能还非常薄弱，浏览器无法从硬件设备处获得特别复杂的上下文信息，也无法调用硬件设备的某些高级计算性能。所以，在互联网前端设计开发中，响应式设计目前主要解决的问题还是布局。绝大多数浏览器都能准确地获取显示窗口的尺寸信息，而显示尺寸的变化是影响用户浏览体验的主要因素之一。</p>
+<p class="quote">布局的自适应性调整是响应式web设计需要解决的首要问题。</p>
+<p>下面是一些响应式设计的例子，可以发现同一个页面在不同的屏幕尺寸（PC，平板，手机）下发生了变化。<span class="highlight">请注意这些不同尺寸的页面体现出的一种“视觉一致性”</span>。</p>
+<figure><img src="assets/09/1.jpg" /></figure>
+<figure><img src="assets/09/4.jpg" /></figure>
+<figure><img src="assets/09/9.jpg" /></figure>
+<figure><img src="assets/09/13.jpg" /></figure>
+</section>
+
+
+<section class="card">
+<h2>布局网格重排</h2>
+<p>响应式布局要考虑的问题有很多，本课程中重点关注的问题是布局网格的重排，即当页面尺寸发生变化时页面元素布局网格应如何变化的问题。视觉设计中与布局网格相关的一个重要原则是：<span class="highlight">显示面积越大，布局网格越复杂，显示面积越小，布局网格越简单</span>。在具体实践中，网页设计需要考虑：</p>
+<ul class="tips">
+  <li>如何尽量保持界面的<span class="highlight">视觉一致性</span></li>
+  <li>如何定义变化的<span class="highlight">临界尺寸</span></li>
+  <li>如何<span class="highlight">仅通过CSS</span>就可以调整布局，而让HTML结构保持固定</li>
+</ul>
+<p>对于响应式设计中布局网格的重排，网页设计师<a href="http://www.lukew.com/ff/entry.asp?1514">Luke Wroblewski</a>提供了一系列思路和规则（以下示意图请从右向左看）：</p>
+<figure><img src="assets/09/md-patterns1.png" />
+<figcaption>先挤压边距，再挤压内容块纵向排列</figcaption>
+</figure>
+<figure><img src="assets/09/md-patterns2.png" />
+<figcaption>逐渐将边栏内容挤压至下方，最后形成纵向排列</figcaption>
+</figure>
+<figure><img src="assets/09/md-patterns3.png" />
+<figcaption>先挤压边距，再挤压内容至宽幅的纵向排列，最后挤压至窄幅纵向排列</figcaption>
+</figure>
+<figure><img src="assets/09/md-patterns4.png" />
+<figcaption>仅挤压内容宽度，不调整布局（适合简单内容的页面）</figcaption>
+</figure>
+<figure><img src="assets/09/md-patterns7.png" />
+<figcaption>挤压过程中，让边栏内容向侧边偏移出显示区域。通过导航控制主栏与边栏内容横向切换（类似走马灯模式）</figcaption>
+</figure>
+</section>
+<section class="card">
+<h2>临界尺寸</h2>
+<p>响应式布局中，我们必须定义布局变化的临界尺寸，当页面被挤压或拉伸到这一尺寸时，布局需要发生变化。由于用户端访问网页的设备可能有多种显示规格，所以临界尺寸通常不止一个。需要注意的是，由于网页在浏览器中通常是可以上下滚动的，所以<span class="highlight">临界尺寸一般指页面宽度变化的临界值</span>。</p>
+<figure><img src="assets/09/Responsive-web-design.png" /><figcaption>临界尺寸与显示设备的对应关系图，图片来自<a href="http://justinavery.me/portfolio/responsive-design-surf-the-dream/" target="_blank">http://justinavery.me/portfolio/responsive-design-surf-the-dream/</a></figcaption></figure>
+<p>网页设计师Nick Pettit 在<a href="http://thinkvitamin.com/design/beginners-guide-to-responsive-web-design/">他的博客</a>中推荐了几种更细致的临界尺寸，他们是：</p>
+<ul class="tips">
+  <li>临界尺寸320px，适配<span class="highlight">320</span>×480</li>
+  <li>临界尺寸480px，适配320×<span class="highlight">480</span>，800×<span class="highlight">480</span></li>
+  <li>临界尺寸600px，适配960×540</li>
+  <li>临界尺寸768px，适配1024×<span class="highlight">768</span>，<span class="highlight">800</span>×480</li>
+  <li>临界尺寸900px，适配480×<span class="highlight">845</span>，<span class="highlight">1024</span>×768</li>
+  <li>临界尺寸1200px，适配<span class="highlight">1280</span>×800，以及大部分桌面电脑显示器</li>
+</ul>
+<p>上述清单中的高亮数字代表屏幕分辨率的某个宽或高与对应的临界尺寸适配。这里的临界尺寸只是一个经验值，具体选择哪些尺寸，应根据设计开发项目的目标用户情况来确定。</p>
+</section>
+
+<section class="card">
+<h2>CSS Media Query</h2>
+<p>CSS Media Query可以让你为特定的媒体尺寸专门指定样式规则。这些样式规则平时不会生效，但如果用户的显示尺寸符合Media Query的尺寸设定，它们就起作用。先看下面的例子：</p>
+<code class="lang-css">div.box{width:500px} /*标准情况下，div.box的宽度为500px*/
+@media screen and (max-width: 600px) {
+	div.box {width:300px;}/*如果浏览器窗口宽度小于等于600px，那么div.box的宽度就应变为300px*/
+}</code>
+<p><span class="highlight">Media Query使用逻辑表达式来界定临界尺寸</span>，上面的例子定义了当显示媒介为“screen”<span class="highlight">并且</span>“显示宽度小于等于600px”时，div.box宽度为300px。下面是更多的例子：</p>
+<code class="lang-css">@media screen and (max-width: 320px){
+	/*320px以下*/
+}
+@media screen and (min-width: 320px) and (max-width: 480px){
+	/*大于320px小于480px*/
+}
+@media screen and (min-width: 480px) and (max-width: 600px){
+	/*大于480px小于600px*/
+}
+@media screen and (min-width: 600px) and (max-width: 768px){
+	/*大于600px小于768px*/
+}
+@media screen and (min-width: 768px) and (max-width: 900px){
+	/*大于768px小于900px*/
+}
+@media screen and (min-width: 900px) and (max-width: 1200px){
+	/*大于900px小于1200px*/
+}
+@media screen and (min-width: 1200px){
+	/*1200px以上*/
+}</code>
+<p>此外，media还可以判断设备是横屏还是竖屏</p>
+<code class="lang-css">/* 竖屏 */ 
+@media screen and (orientation:portrait) {
+/* 竖屏的样式定义 */
+}
+
+/* 横屏 */
+@media screen and (orientation:landscape) {
+/* 横屏的样式定义 */
+}</code>
+<p>Media Query表达式使用了多种逻辑关键词，包括</p>
+<ul>
+  <li>and：且</li>
+  <li>all：全部</li>
+  <li>only：仅</li>
+  <li>not：非</li>
+  </ul>
+<p>了解更多Media Query表达式，请访问MDN（<a href="https://developer.mozilla.org/en/docs/CSS/Media_queries">https://developer.mozilla.org/en/docs/CSS/Media_queries</a>）</p>
+<p class="quote">Media Query中定义的CSS样式只有在Media Query逻辑表达式成立的时候才会生效。</p>
+</section>
+<section class="card lbd">
+<h2>使用Media Query实现下列布局变化</h2>
+<p>HTML结构如下（请不要改变HTML结构）：</p>
+<code class="lang-html">&lt;header class=&quot;top&quot;&gt;&lt;/header&gt;
+&lt;div class=&quot;bottom&quot;&gt;
+   &lt;aside class=&quot;rightcol&quot;&gt;&lt;/aside&gt;
+    &lt;article class=&quot;maincol&quot;&gt;&lt;/article&gt;
+&lt;/div&gt;
+</code>
+<p>效果图如下：</p>
+<figure><img src="assets/09/demo.png" /></figure>
+</section>
+</div>
+</body>
+</html>

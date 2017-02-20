@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/03/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>display模式</h1>
+<section class="card">
+<h2>“块”模式(block)与“行内”模式(inline)</h2>
+<p>对于页面中的可视元素，浏览器通常有两种渲染方式：</p>
+<ul>
+  <li><span class="highlight">块</span>：将元素渲染成为页面中的一个独立区块，而且这个元素会“独占一行”。</li>
+  <li><span class="highlight">行内</span>：将元素渲染成为一个“队列”中的单元，队列中的每一个元素与其相邻的元素都“手牵着手”左右相拥，除非受到父级元素的宽度限制而不得不换行。</li>
+</ul>
+<p>为了让大家观察到这两类模式的特点，在下面的例子中，我们为元素设置一个背景色以及外边距：</p>
+<p class="blocktag">这是一个很长很长很长很长很长很长很长很长很长很长很长很长段落，整个段落就是一个块标记</p>
+<p class="blocktag">这是一个很长很长很长很长很长很长很长很长很长很长很长很长段落，整个段落就是一个块标记</p>
+<span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span><span class="inlinetag">行内</span>
+<p>对于以下几类标记，浏览器会默认以“块模式”渲染：</p>
+<code class="lang-html">&lt;div&gt;&lt;p&gt;&lt;h1&gt;&lt;h2&gt;&lt;h3&gt;&lt;h4&gt;&lt;h5&gt;&lt;h6&gt;&lt;ul&gt;&lt;li&gt;...</code>
+<p>对于以下几类标记，浏览器会默认以“行内”模式渲染：</p>
+<code class="lang-html">&lt;a&gt;&lt;span&gt;&lt;em&gt;...</code>
+<h2>在CSS中设置display模式</h2>
+<p>除了浏览器默认的模式外，在CSS中还可以通过设置display属性强制浏览器按其他模式来渲染元素。在设置display模式时，应该注意以下几点：</p>
+<ul>
+  <li>你可以通过在CSS中设置元素的display:block，来强制让元素以块模式渲染。设置为块以后，元素会独占一行，而且可以为其设置高度和宽度，也可以通过坐标精确地控制它们的位置。</li>
+  <li>你可以通过在CSS中设置元素的display:inline，来强制让元素以行内模式渲染。设置为行内后，你将无法为元素设置高度和宽度，也无法精确控制它们的位置，它们的位置由其所在的文本流状态决定。</li>
+  <li>有时为了需要，你可能希望元素既有块的特点（能设置高度宽度），又有行内的特点（能跟随文本流动），这个时候，你需要把该元素的现实属性改成“行内块”，即display:inline-block。</li>
+  <li>如果设置display:none，那么元素将从页面上消失。</li>
+  </ul>
+<p class="quote">上面几种只介绍了几种常见的模式，要进一步了解display属性，请参考<a href="https://developer.mozilla.org/en-US/docs/CSS/display" target="_blank">MDN</a></p>
+</section>
+<section class="card lbd">
+<h2>试试通过CSS改变元素的display属性</h2>
+<p>试试通过CSS改变一个元素的display属性，然后看看会发生什么变化。注意，浏览器默认会按照block模式渲染div标记。</p>
+<code class="lang-html">&lt;div class=&quot;displaydemo&quot;&gt;一个元素&lt;/div&gt;
+&lt;div class=&quot;displaydemo&quot;&gt;一个元素&lt;/div&gt;
+&lt;div class=&quot;displaydemo&quot;&gt;一个元素&lt;/div&gt;
+&lt;div class=&quot;displaydemo&quot;&gt;一个元素&lt;/div&gt;
+&lt;div class=&quot;displaydemo&quot;&gt;一个元素&lt;/div&gt;
+</code>
+<code class="lang-css">div.displaydemo{display:inline;}</code>
+</section>
+<section class="card lbd">
+<h2>水平排列的导航栏</h2>
+<figure><img src="assets/03/banner.png" /></figure>
+<p class="menu"><a href="#">菜单项目一</a><a href="#">菜单项目二</a><a href="#">菜单项目三</a><a href="#">菜单项目四</a></p>
+<p>提示与注意事项：</p>
+<ul>
+  <li>不能改变HTML代码结构</li>
+  <li>要通过伪类选择器控制按钮对鼠标的响应</li>
+  <li>&lt;a&gt;标签默认是inline元素，无法设置高和宽</li>
+  <li>&lt;li&gt;标签默认是block元素，一个&lt;li&gt;会独占一行，无法并排显示</li>
+</ul>
+<code class="lang-html">&lt;ul class=&quot;demo_menu&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.163.com&quot;&gt;网易&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.hnu.edu.cn&quot;&gt;湖南大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.qq.com&quot;&gt;腾讯&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code>
+
+</section>
+<section class="card">
+<h2>“弹性”模式（flex）</h2>
+<p>除了block与inline外，flex也是一种非常有用的模式。利用flex，可以控制一组元素标记的宽度保持一个固定的比例关系。先来看看下面的使用示例：</p>
+<code class="lang-html">&lt;div class=&quot;flexbox&quot;&gt;
+&lt;div class=&quot;noneflex&quot;&gt;div.noneflex，固定尺寸&lt;/div&gt;
+&lt;div class=&quot;flex1&quot;&gt;div.flex1，flex比例为1&lt;/div&gt;
+&lt;div class=&quot;flex2&quot;&gt;div.flex2，flex比例为2&lt;/div&gt;
+&lt;/div&gt;</code>
+<code class="lang-css">.flexbox{	
+	display:flex;
+	}
+.flexbox div{
+	height:80px;
+	color:#fff;
+	text-shadow:0 0 4px rgba(0,0,0,0.2)
+	}
+.flexbox .noneflex{
+	width:200px;
+	flex:none;
+	background:#6CF;
+	}
+.flexbox .flex1{	
+	flex:1;
+	background:#FC0;
+	}
+.flexbox .flex2{	
+	flex:2;
+	background:#9C0;
+	}</code>
+<div class="flexbox">
+<div class="noneflex">div.noneflex，固定尺寸</div>
+<div class="flex1">div.flex1，flex比例为1</div>
+<div class="flex2">div.flex2，flex比例为2</div>
+</div>
+<p>上例中，我们给父级容器div.flexbox设置了 display:flex后，其子级容器，就会按照flex模式显示。</p>
+<ul>
+  <li>div.noneflex的flex:none，且width:200px，所以无论div.flexbox宽度如何变化，它始终保持200px;</li>
+  <li>div.flex1和div.flex2的flex分别设置为1和2，且没有固定宽度值。所以，div.flex1的实际宽度将是父级容器宽度减去200px后剩余宽度的1/3；div.flex2的实际宽度将是父级容器宽度减去200px后剩余宽度的2/3</li>
+  </ul>
+<p class="quote">只有部分浏览器比如firefox，chrome以及opera支持CSS flex！</p>
+</section>
+<section class="card lbd">
+<h2>使用flex制作水平排列的导航栏</h2>
+<p>使用css flex按照下面的设计稿制作水平排列的导航栏。设计稿源文件可在<a href="assets/03/flex_demo.pdf">这里</a>下载。</p>
+<figure><img src="assets/03/flex_demo.png" /></figure>
+<p>注意：请参考前一个导航栏的示例使用ul，li和a标签来构建导航栏的HTML结构；左侧的logo可以使用css background的方式来显示。</p>
+</section>
+</div>
+</body>
+</html>

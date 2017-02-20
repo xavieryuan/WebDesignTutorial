@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/08/styles.css" rel="stylesheet" type="text/css">
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/08/script.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>UI模式：翻转卡片</h1>
+<section class="card">
+<h2>翻转卡片的机制</h2>
+<p>翻转卡片是一种互动性很强的UI模式，这种模式的背后反映出图形界面上的“<span class="highlight">开关问题</span>”。比如：</p>
+<figure><img src="assets/08/switch.png" />
+<figcaption>游戏中的翻转卡片</figcaption></figure>
+<p class="quote">这里的“开关”是一个抽象概念，指用户每次都通过相同的输入触发界面中的某个UI元素在两个状态间切换。</p>
+<p>类似的例子还有iOS控制中心的各种开关按钮，如下所示：</p>
+<figure><img src="assets/08/control_center.png" />
+<figcaption>iOS的控制中心</figcaption></figure>
+<p>通常来说，翻转卡片的HTML结构可能是下面这个样子：</p>
+
+<code class="lang-html">&lt;div class=&quot;flipcard&quot;&gt;
+&lt;div class=&quot;a-side&quot;&gt;状态A&lt;/div&gt;
+&lt;div class=&quot;b-side&quot;&gt;状态B&lt;/div&gt;
+&lt;/div&gt;</code>
+<p>在这个HTML结构中，卡片正面或反面的内容分别使用不同的div容器来装载（div.a-side及div.b-side），而两个div容器的外面还会再包裹一层div容器（div.flipcard），方便定位和控制。</p>
+<h3>transform，Perspective以及backface-visibility</h3>
+<p>卡片翻转的效果是通过css的transform来实现的，设计效果图如下</p>
+<figure><img src="assets/08/reversal_layout.png" />
+<figcaption>“翻转卡片”的设计效果图</figcaption>
+</figure>
+
+<p>利用transform和perspective属性来产生翻转透视效果</p>
+<div class="wrapperbox">
+<div class="innerbox y45">翻转透视</div>
+</div>
+<code class="lang-css">.wrapperbox{
+ /*景深距离：即屏幕与透视灭点（这是一个单点透视）的距离。这个距离越大透视变形幅度越大。*/
+   perspective: 600px;
+   }
+.innerbox{
+  
+   transform: rotateY( 45deg );
+   }</code>
+<p>利用backface-visibility控制元素翻转后的可见性</p>
+<code class="lang-css">
+.innerbox{
+   /*元素翻转后背面不可见*/
+   backface-visibility: hidden;
+   }</code>
+<div class="wrapperbox">
+<div class="innerbox y135">翻转透视</div>
+</div>
+<table class="chart">
+<caption>
+三要素分析
+</caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td>点击.flipcard时，如果当前处于正面模式</td>
+    <td>.flipcard</td>
+    <td>进入背面模式
+    addClass("backmode");
+    </td>
+  </tr>
+  
+  <tr>
+    <td>点击.flipcard时，如果当前处于背面模式</td>
+    <td>.flipcard</td>
+    <td>退出背面模式，显示正面
+    removeClass("backmode");
+    </td>
+  </tr>
+  
+  <tr>
+    <td>文档加载完成时</td>
+    <td>.flipcard</td>
+    <td>绑定点击事件处理
+    on("click",function(){})
+    </td>
+  </tr>
+</table>
+
+<h3>实现效果如下：</h3>
+
+<div id="flip-card">
+<div id="a-side"><img src="assets/08/02.jpg" /></div>
+<div id="b-side"><img src="assets/08/04.jpg" /></div>
+</div>
+
+</section>
+<section class="card">
+<h2>翻转卡片演示视频</h2>
+<video width="100%" controls preload="none" poster="assets/videos/flipcard.png">
+	<source src="assets/videos/flipcard.mp4" type="video/mp4">
+</video>
+
+
+</section>
+
+</div>
+</body>
+</html>

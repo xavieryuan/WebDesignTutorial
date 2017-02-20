@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/03/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>背景与图像</h1>
+<section class="card">
+<h2>如何通过CSS设置元素背景</h2>
+<p>在css中设置元素的background属性，可以定义元素的背景，比如</p>
+<code class="lang-html">&lt;p class=&quot;p1&quot;&gt;背景是红色的段落&lt;/p&gt;</code>
+<code class="lang-css">.p1{background-color:red;}</code>
+<p class="p1">背景是红色的段落</p>
+<h2>一些背景设置说明</h2>
+<code class="lang-css">background-color:#ffffff; /*背景颜色*/
+background-image: url(bg.jpg) /*背景图片*/
+background-repeat:repeat-x;/*背景复制模式*/
+background-attachment:fixed;/*背景粘帖模式*/
+background-position:center top; /*背景位置*/</code>
+<p>有时为了简化，也可以这样写：</p>
+<code class="lang-css">background:#fff url(bg.jpg) no-repeat fixed center top;</code>
+</section>
+<section class="card lbd">
+<h2>为HTML元素设置背景</h2>
+<p>新建一个HTML文档，然后试试用下面这张图做为&lt;body&gt;的背景，看看 repeat, attachment, 以及 position等属性会带来什么样的变化。</p>
+<img src="assets/03/background3.png" width="100" height="100" alt="带有坐标的背景">
+<p>现在试试将一张风景图片设置为一个div元素的背景，如下所示</p>
+<code class="lang-html">&lt;div class=&quot;hnubuilding&quot;&gt;&lt;/div&gt;</code>
+<p>下面是对应的CSS代码，在代码中，我们通过制定width和height属性设置了div.hnubuilding的尺寸，这个尺寸与背景图的尺寸完全一致，这样元素刚好可以完整显示背景图。</p>
+<code class="lang-css">div.hnubuilding{
+	background: url(hnusd_building.jpg) no-repeat;
+	width:550px;
+	height:330px;
+}</code>
+<p>效果如下:</p>
+<div class="hnubuilding"></div>
+<p class="quote">在CSS代码中经常会用到“链接”。在上面的例子中，我们通过url(hnusd_building.jpg)告诉浏览器到哪里去寻找背景图片资源。还记得前面介绍过的链接概念么？这里的链接可以是绝对链接，也可以是相对链接。要注意的是，如果使用相对链接，是相对于CSS文档，而不是相对于HTML文档。</p>
+</section>
+<section class="card">
+<h2>用CSS Background还是用&lt;img&gt;标签？</h2>
+<p>从效果上看，CSS Background与&lt;img&gt;标签都可以在网页的某个区域渲染一张图片。但是，这两者有什么区别呢？</p>
+<code class="lang-html">&lt;img src=&quot;assets/03/hnusd_building.jpg&quot; /&gt;</code>
+<img src="assets/03/hnusd_building.jpg" />
+<p>&lt;img&gt;作为一个标签，有它特定的语义。它代表文档中的一张图片，属于文档的“内容信息”。所以，如果一张图片是HTML文档语义的一部分（比如一张插图），那么就应该用&lt;img&gt;标签。</p>
+<p>CSS Background不包含特定的语义。如果一张图片在HTML文档中仅仅起到美化页面的装饰作用，那么它应该属于文档的“表示信息”，此时就应该使用CSS Background。</p>
+</section>
+<section class="card lbd">
+<h2>CSS Background的妙用</h2>
+<p>网页中有许多视觉效果，都可以通过CSS Background实现，比如：</p>
+<h3>利用背景复制来实现立体效果</h3>
+<code class="lang-html">&lt;div class=&quot;blackbtn&quot;&gt;有一点立体&lt;/div&gt;</code>
+<code class="lang-css">.btn{
+    height:60px;
+    background-image:url(button_bg.png);
+    background-repeat:repeat-x;
+    color:red;
+    text-align:center;
+}</code>
+<div class="blackbtn">有一点立体</div>
+
+<h3>利用背景图案实现按钮标识</h3>
+<code class="lang-html">&lt;div class=&quot;redarrowbtn&quot;&gt;一直向右&lt;/div&gt;</code>
+<code class="lang-css">.redarrowbtn{
+    width:200px;
+    height:40px;
+    background-color:#F30;
+    background-image:url(arrow.png);
+    background-repeat:no-repeat;
+    color:#fff;
+    background-position:right bottom;
+}</code>
+<div class="redarrowbtn">一直向右</div>
+<h3>利用四方连续图案实现页面纹理</h3>
+<code class="lang-html">&lt;div class=&quot;papertexture&quot;&gt;纸张纹理&lt;/div&gt;</code>
+<code class="lang-css">.papertexture{
+    height:400px;
+    background-image:url(paperbg.png);
+    color:#000;
+}
+</code>
+<div class="papertexture">纸张纹理</div>
+<p class="quote">不知道什么叫“四方连续图案”？快查查<a href="http://baike.baidu.com/view/5820452.htm" target="_blank">百度</a>吧！</p>
+<h3>利用复合背景构建复杂场景</h3>
+<p>我们可以使用符合背景来构建复杂场景，但是这一特性只有部分浏览器支持，比如Chrome和FireFox。
+</p>
+<code class="lang-html">&lt;div class=&quot;sheep&quot;&gt;小绵羊&lt;/div&gt;</code>
+<p>在CSS Background中可以为background-image, background-repeat, 以及 background-position等属性赋予多个值，每个值之间用<span class="highlight">英文单字节的逗号</span>分割。</p>
+<code class="lang-css">.sheep{
+	width:400px;
+	height:300px;
+	background-color:#6CF;	
+	background-image:url(sheep.png),url(grass.png);	
+	background-repeat:no-repeat,repeat-x;	
+	background-position:bottom center,bottom;	
+	}
+</code>
+<div class="sheep">小绵羊</div>
+<h3>在开发调试过程中利用CSS Background</h3>
+<p>通过设置背景，我们可以观察标记在浏览器中的位置和边界，有时可以利用这一点让我们观察和学习浏览器如何渲染元素。</p>
+</section>
+</div>
+</body>
+</html>

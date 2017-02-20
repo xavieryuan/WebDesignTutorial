@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/06/styles.css" rel="stylesheet" type="text/css">
+
+<script src="lib/jquery-1.7.1.min.js"></script>
+<script language="JavaScript" src="assets/06/myFirstJS.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="wrapper">
+<h1>UI模式：标签页</h1>
+
+<section class="card">
+<h2>标签页模式的实现机制</h2>
+<p>标签页是网页设计中被广泛使用到的一种UI模式。通过这个示例，我们将了解：</p>
+<ul>
+  <li>用jQuery定位到特定的DOM元素；</li>
+  <li>用jQuery修改元素的CSS样式；</li>
+  <li>在jQuery中绑定click事件。</li>
+</ul>
+<p>HTML结构</p>
+<code class="lang-html">&lt;div id=&quot;tabdemo&quot; class=&quot;tabdemo&quot;&gt;
+&lt;ul class=&quot;tabs&quot;&gt;
+&lt;li id=&quot;tab1&quot;&gt;&lt;a href=&quot;#&quot;&gt;Tab1&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&quot;tab2&quot;&gt;&lt;a href=&quot;#&quot;&gt;Tab2&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&quot;tab3&quot;&gt;&lt;a href=&quot;#&quot;&gt;Tab3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;cntbox&quot;&gt;
+&lt;div id=&quot;content1&quot; class=&quot;cnt&quot;&gt;Content1&lt;/div&gt;
+&lt;div id=&quot;content2&quot; class=&quot;cnt&quot;&gt;Content2&lt;/div&gt;
+&lt;div id=&quot;content3&quot; class=&quot;cnt&quot;&gt;Content3&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code>
+
+<p>效果图</p>
+<figure><img src="assets/06/tab_HTML_layout.png" />
+<figcaption>效果图</figcaption>
+</figure>
+<p>确定交互行为逻辑：在CSS中，为标签的普通状态与高亮状态分别定义两组样式，通过一个名为active的class值进行区分；如果需要高亮某个标签并显示相应内容，就在对应的DOM元素上添加一个class值“active”，同时将其它标签DOM元素上的active值去除。</p>
+<table class="chart">
+  <caption>
+    三要素分析
+  </caption>
+  <tr>
+    <th scope="col">When</th>
+    <th scope="col">Who</th>
+    <th scope="col">What</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Tab1被点击</td>
+    <td>$(&quot;#content1&quot;)</td>
+    <td>addClass("active")</td>
+  </tr>
+  <tr>
+    <td>$(&quot;#content2&quot;)<br>
+      $(&quot;#content3&quot;)</td>
+    <td>removeClass("active")</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Tab2被点击<br></td>
+    <td>$(&quot;#content2&quot;)</td>
+    <td>addClass("active")</td>
+  </tr>
+  <tr>
+    <td>$(&quot;#content&quot;)<br>
+      $(&quot;#content3&quot;)</td>
+    <td>removeClass("active")</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Tab3被点击</td>
+    <td>$(&quot;#content3&quot;)</td>
+    <td>addClass("active")</td>
+  </tr>
+  <tr>
+    <td>$(&quot;#content1&quot;)<br>
+      $(&quot;#content2&quot;)</td>
+    <td>removeClass("active")</td>
+  </tr>
+  <tr>
+    <td rowspan="3">页面初始化</td>
+    <td>$(&quot;#content1&quot;)</td>
+    <td>addClass("active")</td>
+  </tr>
+  <tr>
+    <td>$(&quot;#content2&quot;)<br>
+      $(&quot;#content3&quot;)</td>
+    <td>removeClass("active")</td>
+  </tr>
+  <tr>
+    <td>$(&quot;#tab1 a&quot;)<br>
+      $(&quot;#tab2 a&quot;)<br>
+      $(&quot;#tab3 a&quot;)</td>
+    <td>绑定点击事件处理<br>
+      on(&quot;click&quot;,function(e){})</td>
+  </tr>
+</table>
+<p>效果</p>
+<div id="tabdemo">
+<ul>
+	<li id="tab1"><a href="#">Tab1</a></li>
+    <li id="tab2"><a href="#">Tab2</a></li>
+    <li id="tab3"><a href="#">Tab3</a></li>
+    </ul>
+<div id="content1">
+  <p>Content1</p>
+  <p>Use when there are more than 2 sections Use when there less than 8-10 sections depending on the length of each section name. Use when section names are relatively short Use when you want the navigation to fill the entire width of a page Use when you want to provide a list of the highest available sections/subsections of the website Do not use when wanting to show content-specific data.</p>
+</div>
+<div id="content2">
+<p>Content2</p>
+<p>A horizontal bar contains the different sections or categories of your website.
+Each section or category is represented by a tab that resembles a button. This is why the whole button should be clickable, and not just the text that labels the section.
+Optionally, a bar below the top bar can contain subsections of the currently selected item in the top bar
+The same navigation tab is used on all pages that is linked from the navigation tab.
+The same structure (order) of the navigation tabs should be maintained from page to page, so that the user can relate the navigation of the different pages to each other.</p>
+</div>
+<div id="content3">Content3</div>
+</div>
+</section>
+<section class="card lbd">
+<h2>根据给定的HTML利用jQuery实现下面的标签页设计。（<a href="assets/06/sunflower.pdf" target="_blank">下载PDF设计稿</a>）</h2>
+<figure><img src="assets/06/sunflower.png" alt="sunflower tab design">
+<figcaption>设计效果图</figcaption>
+</figure>
+<p>给出的HTML代码如下，注意不要改动HTML代码。</p>
+<code class="lang-html">&lt;div id=&quot;tabheading&quot;&gt;
+&lt;ul&gt;
+&lt;li id=&quot;sunflowertab1&quot;&gt;&lt;a href=&quot;#&quot;&gt;标签一&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&quot;sunflowertab2&quot;&gt;&lt;a href=&quot;#&quot;&gt;标签二&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&quot;sunflowertab3&quot;&gt;&lt;a href=&quot;#&quot;&gt;标签三&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&quot;sunflowercnt1&quot;&gt;标签一的内容。&lt;/div&gt;
+&lt;div id=&quot;sunflowercnt2&quot;&gt;向日葵（学名：Helianthus annuus）别名太阳花，是菊科向日葵属的植物。因花序随太阳转动而得名。向日葵花语为爱慕、光辉、高傲之意，仰慕、凝视着你。向日葵（学名：Helianthus annuus）别名太阳花，是菊科向日葵属的植物。因花序随太阳转动而得名。向日葵花语为爱慕、光辉、高傲之意，仰慕、凝视着你。&lt;/div&gt;
+&lt;div id=&quot;sunflowercnt3&quot;&gt;标签三的内容。&lt;/div&gt;
+&lt;/div&gt;</code>
+<p>小提示：</p>
+<ul>
+  <li>向日葵图片最好采用背景而不是img标签的方式实现，因为它只是文档中的“表现信息”；</li>
+  <li>圆角标签应具备一定的弹性，并能随这标签文本长度的变化而自动伸缩。</li>
+</ul>
+</section>
+<section class="card">
+<h2>本节相关视频</h2>
+<ul>
+<li><a href="assets/videos/tab.mp4" target="_blank">标签页</a></li>
+</ul>
+</section>
+</div>
+</body>
+</html>

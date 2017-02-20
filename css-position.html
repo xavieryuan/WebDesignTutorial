@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+
+<h1>定位与堆叠</h1>
+<section class="card">
+<h2>使用position, top, left, right, bottom精确定位标记元素。</h2>
+<p>默认情况下，浏览器会根据HTML中的文档结构关系将按块模式渲染的元素显示在屏幕的特定位置，结构关系通常有两类：</p>
+<ul>
+  <li>并列关系（兄弟）：元素一个在上一个在下</li>
+  <li>包含关系（父子），元素一个在内一个在外</li>
+</ul>
+<figure><img src="assets/04/sibling.png"/><figcaption>HTML元素的兄弟关系示意图</figcaption></figure>
+<figure><img src="assets/04/parent.png"/><figcaption>HTML元素的父子关系示意图</figcaption></figure>
+<p>通过调整position属性，可以改变元素的默认定位机制，配合top, bottom, left, right的控制，就可满足不同布局定位的需求。理解position定位的关键在于<span class="highlight">寻找参照物</span>，具体如下：</p>
+<ul>
+  <li>如果设置某元素的position=absolute，元素将从自己最近的一个父元素开始，逐级搜寻具有position定义的父级元素，搜寻过程一直会追溯到文档显示的根元素html。
+    <ul>
+      <li>对于找到的第一个具有position属性的父级别元素，如果position的值不为static，那么元素就会以该父元素的位置为参照进行渲染，并通过top,bottom,left,right来控制其与父元素的偏移。</li>
+      <li>如果没有找到任何具有position属性的父元素，那么该元素就会以html的位置为参照进行渲染，并通过top,bottom,left,right来控制其与body显示区域的偏移。</li>
+    </ul>
+  </li>
+  <li>当position=relative时，元素会以其默认位置为参照进行渲染,并通过top,bottom,left,right来控制其偏移</li>
+  <li>当position=fixed时，元素会以浏览器窗口显示区域为参照进行渲染,并通过top,bottom,left,right来控制其偏移</li>
+</ul>
+<p>改变元素默认布局机制后，元素可能会产生重叠。此时可以使用<span class="highlight">z-index</span>属性来管理元素的堆叠次序，z-index值较大的元素将堆叠在z-index值较小元素的上方。</p>
+<div class="box1">box1</div>
+<div class="box2">box2</div>
+</section>
+<section class="card">
+<h2>使用float实现图文混排</h2>
+<p>float是另一种不同于position的定位机制，通常被用来控制图形与文本的绕排。</p>
+<p>float属性控制元素的悬浮关系，示例如下：</p>
+<code class="lang-css">div.floatbox{float:left}
+</code>
+
+<p>在正常情况下，浏览器会根据元素在HTML文档中的顺序按照“自上而下”方式渲染元素，而元素在页面上的显示结果好似一个“自上而下”的队列。</p>
+<div class="floatbox">floating</div>
+<p>通过给某个元素设置float:left或者float:right，可以让该元素“脱离”原队列进入一个“浮动状态”。这一状态下的元素将覆盖在其后续正常元素之上，即“浮动”。如果几个相邻的元素都设置了float，且float的值不为none，那么这些元素在“行为”上与“行内元素”非常相似，会随着一个特定序列流动。</p>
+<p class="clearfloat">设置了float的元素会影响后续元素的显示。有些时候，如果某个元素不希望受到其他元素的float影响，那么需要使用clear属性。</p>
+<p>清除左侧浮动，如果之前的元素设置了float:left，将不会覆盖div.clearfloat</p>
+<code class="lang-css">div.clearfloat{clear:left;}</code>
+<p>清除右侧浮动，如果之前的元素设置了float:right，将不会覆盖到div.clearfloat</p>
+<code class="lang-css">div.clearfloat{clear:right;}</code>
+<p>清除双侧浮动，无论之前的元素设置了哪种float，都不会覆盖到div.clearfloat</p>
+<code class="lang-css">div.clearfloat{clear:both;}</code>
+<p class="quote">
+    注意，我们通常不会同时使用position与float定位元素。<br>
+    什么时候使用position：需要定义标记元素的精确位置（有坐标值）。<br>
+    什么时候用float：需要定义图文的绕排关系，但没有精确的坐标定位。
+</p>
+</section>
+<section class="card lbd">
+<p>根据所给的HTML，实现下面的设计图所示的定位（三个box中心点对齐）。</p>
+<code class="lang-html">
+&lt;div class="box1"&gt;
+	&lt;div class="box2"&gt;
+		&lt;div class="box3"&gt;	
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+</code>
+<figure>
+	<img src="assets/04/positon_center.png" alt="">
+	<figcaption>
+	设计图	
+	</figcaption>
+</figure>
+	
+</section>
+</div>
+</body>
+</html>

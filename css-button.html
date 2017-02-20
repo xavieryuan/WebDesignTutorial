@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/04/styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<h1>关于按钮</h1>
+<section class="card">
+<h2>制作按钮的注意事项</h2>
+<p>制作按钮并不像想象中那样简单，你需要考虑几个问题:</p>
+<ul>
+<li>按钮通常暗示一个点击行为，从文档语义上来看，点击之后可能会发生链接跳转，也可能会提交一个表单。所以，按钮的HTML标签往往会使用a（链接）或button（表单）。</li>
+<li>一个复杂的按钮，设计上可能包括背景、按钮图案和标签文本，但其HTML结构可能只是一个简单的a或button标签。所以，设计师需要运用CSS在一个的HTML标签上把所有这些设计元素都实现出来。</li>
+<li>按钮中的标签文本很可能是从数据端动态加载的，这意味着文本的长短可能不一致，但对应的CSS定义只能有一个，所以设计时必修考虑这种动态性。</li>
+
+</ul>
+<figure><img src="assets/05/button_design.png" />
+<figcaption>按钮的设计图（<a href="assets/05/homebtn.pdf">下载PDF源文件</a>）</figcaption>
+</figure>
+<p>上面是一张典型的按钮设计图，按钮可分为图形和文本两部分，可由下面的CSS实现（请仔细查看注释中的说明）：</p>
+<code class="lang-css">a.btn{
+	color:#000;
+	text-decoration:none;
+	display:inline-block;
+	background:url(btn_home.png) no-repeat 10px,url(button_bg.png) repeat-x;
+	padding-left:60px;/*防止文字覆盖在图标上*/
+	padding-right:10px;
+	box-sizing:border-box;/*选择合适的盒模型*/
+	max-width:300px;/*不固定宽度，只设置最大宽度*/
+	height:60px;
+	line-height:60px;/*行高等于元素高度可控制文本垂直居中*/
+	border-radius: 15px;/*圆角效果*/
+	white-space: nowrap;/*强制单行显示不换行*/
+	margin:10px 0;	
+	overflow: hidden;/*隐藏文本溢出部分*/
+	text-overflow: ellipsis;/*文本溢出后用...代替*/	
+	}
+</code>
+<p>没有标签文本的按钮。</p>
+<a class="btn" href="#"></a>
+<p>有标签文本的按钮。</p>
+<a class="btn" href="#">我是一个透明的按钮</a>
+<p>标签文本溢出的按钮。</p>
+<a class="btn" href="#">我是一个透明的长长长长长长长长长按钮</a>
+</section>
+<section class="card lbd">
+<h2>试试利用&lt;a&gt;标签伪类选择器和CSS背景制作具有交互性的按钮</h2>
+<p>给出的HTML如下所示：</p>
+<code class="lang-html">&lt;a href=&quot;http://www.firefox.com.cn&quot;&gt;Download FireFox&lt;/a&gt;
+&lt;a href=&quot;http://www.firefox.com.cn&quot;&gt;下载火狐&lt;/a&gt;
+</code>
+<p>效果图如下：</p>
+<figure><img src="assets/03/firefox_btn.png">
+<figcaption>按钮效果图</figcaption>
+</figure>
+<p>点击这里<a href="demo/firefoxbtn/firefox_btn.pdf" target="_blank">下载PDF素材</a>文件。</p>
+</section>
+<section class="card">
+<h2>如何制作按钮</h2>
+<video width="100%" controls preload="none" poster="assets/videos/button_video_bg.png">
+	<source src="assets/videos/button.mp4" type="video/mp4">
+</video>
+</section>
+</div>
+</body>
+</html>

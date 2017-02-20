@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/05/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="wrapper">
+<h1>分栏与布局</h1>
+<section class="card">
+  <h2>布局容器</h2>
+<p class="quote">“95%的网页设计都是平面设计”<br />(<a href="http://informationarchitects.net/blog/the-web-is-all-about-typography-period/">http://informationarchitects.net/blog/the-web-is-all-about-typography-period/</a>)</p>
+<p>网页的界面布局与印刷品的平面设计关系密切。网页布局沿袭了印刷行业的传统，通常会采用网格辅助工具，将页面的内容划分到几个矩形区域内，这些区域相当于“布局容器”。</p>
+<figure><img src="assets/04/yahoo_grid_off.png" alt="雅虎首页">
+<figcaption>雅虎首页，http://www.yahoo.com</figcaption>
+</figure>
+<figure><img src="assets/04/yahoo_grid_on.png" alt="雅虎首页布局容器示意">
+<figcaption>雅虎首页布局容器示意</figcaption>
+</figure>
+<p>在网页设计中，通过使用DIV容器标记并设置相应的CSS样式，可以将网页的内容分配到几个区块之中，实现印刷品类似的布局效果。</p>
+<p>为什么使用&lt;div&gt;？</p>
+<ul>
+  <li>&lt;div&gt;本身的作用就是布局容器，不像&lt;h1&gt;或&lt;p&gt;那样含有特殊语义</li>
+  <li>&lt;span&gt;的作用也是容器，但&lt;span&gt;默认是行内元素</li>
+  <li>HTML5中，除了&lt;div&gt;我们还可以使用&lt;header&gt;&lt;section&gt;&lt;aside&gt;和&lt;footer&gt;，这些都是很好的布局容器</li>
+</ul>
+
+</section>
+<section class="card lbd">
+<figure><img src="assets/04/layout.png" /><figcaption>布局分栏示意图</figcaption></figure>
+<code class="lang-html">
+&lt;header class=&quot;header&quot;&gt;header&lt;/header&gt;
+&lt;section class=&quot;section&quot;&gt;
+    &lt;aside class=&quot;leftcol&quot;&gt;aside-left&lt;/aside&gt;
+    &lt;article class=&quot;maincol&quot;&gt;article&lt;/article&gt;
+    &lt;aside class=&quot;rightcol&quot;&gt;aside-right&lt;/aside&gt;    
+&lt;/section&gt;
+&lt;footer class=&quot;footer&quot;&gt;footer&lt;/footer&gt;
+</code>
+<p>为以上HTML添加css，使其按照示意图的样式显示。</p>
+<p class="quote">
+    思考一下，如何让中间三栏leftcol，rightcol和maincol水平排列？可以使用flex或position。
+</p>
+
+</section>
+<section class="card">
+<h2>工字形布局</h2>
+<h3>使用css flex</h3>
+<video width="100%" controls preload="none" poster="assets/videos/layout_flex.png">
+	<source src="assets/videos/layout_flex.mp4" type="video/mp4">
+</video>
+
+<h3>使用css position</h3>
+<video width="100%" controls preload="none" poster="assets/videos/layout_position.png">
+	<source src="assets/videos/layout_position.mp4" type="video/mp4">
+</video>
+</section>
+<section class="card lbd">
+<h2>使用给定的HTML，根据线框图的设计要求制作布局分栏</h2>
+<code class="lang-html">&lt;header class=&quot;header&quot;&gt;
+&lt;div class=&quot;logo&quot;&gt;logo&lt;/div&gt;
+&lt;div class=&quot;search&quot;&gt;Search&lt;/div&gt;
+&lt;/header&gt;
+&lt;section class=&quot;section&quot;&gt;
+&lt;aside class=&quot;rightcol&quot;&gt;
+&lt;ul class=&quot;menu&quot;&gt;
+&lt;li&gt;BTN1&lt;/li&gt;
+&lt;li&gt;BTN2&lt;/li&gt;
+&lt;li&gt;BTN3&lt;/li&gt;
+&lt;li&gt;BTN4&lt;/li&gt;
+&lt;li&gt;BTN5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;article class=&quot;maincol&quot;&gt;
+&lt;h1&gt;Welcome!&lt;/h1&gt;
+&lt;div class=&quot;image&quot;&gt;image&lt;/div&gt;
+&lt;p&gt;Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text! Welcome text!&lt;/p&gt;
+&lt;/article&gt;
+&lt;/section&gt;
+&lt;footer class=&quot;footer&quot;&gt;
+&lt;h1&gt;contact us&lt;/h1&gt;
+&lt;p&gt;footer text footer text footer text footer text footer text footer text footer text footer text footer text footer text footer text footer text&lt;/p&gt;
+&lt;/footer&gt;</code>
+<figure><img src="assets/04/layout2.png"><figcaption>布局线框图</figcaption></figure>
+</section>
+
+<section class="card lbd">
+<h2>试试为HTML代码添加CSS实现下面设计图中的效果，不得改变HTML结构。(<a href="assets/05/infocard.pdf">下载pdf效果图</a>)</h2>
+<code class="lang-html">&lt;div class=&quot;infocard&quot;&gt;
+&lt;img class=&quot;thumb&quot; src=&quot;thumb.png&quot;&gt;
+&lt;div class=&quot;infodata&quot;&gt;
+&lt;h2&gt;桑米罗伯特在赛博朋克梦境的奇幻漂流&lt;/h2&gt;
+&lt;p class=&quot;designer&quot;&gt;设计：2012级某同学&lt;/p&gt;
+&lt;p class=&quot;about&quot;&gt;赛博朋克（cyberpunk，是cybernetics与punk的结合词），又称数字朋克、赛伯朋克、计算机叛客、网络叛客，是科幻小说的一个分支，以计算机或信息技术为主题，小说中通常有社会秩序受破坏的情节。现在赛博朋克的情节通常围绕黑客、人工智能及大型企业之间的矛盾而展开，背景设在不远的将来的一个反乌托邦地球，而不像早期科幻（如太空歌剧）背景多在外太空。它的出现是对科幻小说一贯忽略信息技术的一种自我修正。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;toolbar&quot;&gt;
+&lt;div class=&quot;likes&quot;&gt;417&lt;/div&gt;
+&lt;div class=&quot;comments&quot;&gt;12&lt;/div&gt;
+&lt;div class=&quot;goto&quot;&gt;GO&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; </code>
+<figure><img src="assets/05/infocard.png" /></figure>
+</section>
+</div>
+
+</body>
+</html>

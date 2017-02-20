@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: "Sansation Light";
+	src: url("Sansation_Light.ttf"); 
+}
+@font-face {
+	font-family: "Yue Go";
+	src: url("yuego.otf"); 
+}
+
+div.sansation {
+	font-family: "Sansation Light", serif;
+	font-size:32px;
+	font-weight:bold;
+}
+div.yuego{
+	font-family: "Yue Go", "微软雅黑";
+	font-size:32px;
+	font-weight:bold;
+	}
+div.shadowtitle1{
+	font-size:2em;
+	font-weight:bold;
+	color:#fff;
+	background:#666;
+	padding:10px;
+	text-align:center;
+	text-shadow:#000 0 1px 4px;
+	}
+div.shadowtitle2{
+	font-size:2em;
+	font-weight:bold;
+	color:#333;
+	background:#ccc;
+	padding:10px;
+	text-align:center;
+	text-shadow:#fff 0 1px 0;
+	}
+.box1{width:150px;height:150px;background:#06F;color:#fff;padding:20px;
+}
+.box2{width:150px;height:150px;background:#F60;color:#fff;
+}
+div.floatbox{
+	width:100px;
+	height:100px;
+	background:#9C0;color:#fff;
+	float:left;/**/
+	margin:6px 10px 10px 0;
+	}
+div.floatbox2{
+	width:100px;
+	height:100px;
+	background:#F60;color:#fff;
+	float:left;
+	}
+p.clearfloat{
+	clear:both;
+	}
+	
+.header{
+	/*width:600px;*/
+	height:100px;
+	background:#000;
+	color:#fff;
+	font-size:24px;
+	margin-bottom:10px;
+	}
+.maincol{
+	/*width:400px;*/
+	height:400px;
+	background:#333;
+	color:#fff;
+	font-size:24px;
+	margin-left:100px;
+	margin-right:100px;
+	}
+.section{
+	position:relative;
+	}
+.leftcol{
+	width:90px;
+	height:400px;
+	background:#000;
+	color:#fff;
+	font-size:24px;
+	position:absolute;
+	left:0;
+	top:0;
+	}
+.rightcol{
+	width:90px;
+	height:400px;
+	background:#000;
+	color:#fff;
+	font-size:24px;
+	position:absolute;
+	right:0;
+	top:0;
+	}
+.footer{
+	/*width:600px;*/
+	height:100px;
+	background:#000;
+	color:#fff;
+	font-size:24px;
+	margin-top:10px;
+	
+	}
+.btn{
+	color:#000;
+	text-decoration:none;
+	display: inline-block;
+	background:url(btn_home.png) no-repeat 10px,url(btn_bg_chrome.png) repeat-x;
+	padding-left:60px;/*防止文字覆盖在图标上*/
+	padding-right:10px;
+	box-sizing:border-box;/*选择合适的盒模型*/
+	max-width:300px;/*不固定宽度，只设置最大宽度*/
+	height:60px;
+	line-height:60px;/*行高等于元素高度可控制文本垂直居中*/
+	border-radius: 15px;/*圆角效果*/
+	white-space: nowrap;/*强制单行显示不换行*/
+	margin:10px 0;	
+	overflow: hidden;/*隐藏文本溢出部分*/
+	text-overflow: ellipsis;/*文本溢出后用...代替*/
+	}
+.rocket-bg{
+    background-image: url(icon_rocket.png);
+    background-size: contain;
+    width:50px;
+    height:50px;
+}
+div.redball{
+    width:100px;
+    height:100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .3;
+    background: red;
+    border-radius: 50px;
+    margin:-50px 0 0 -50px;
+}

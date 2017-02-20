@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="wrapper">
+<h1>HTML简介</h1>
+<section class="card">
+<h2>关于HTML</h2>
+<p>HTML是HyperText Markup Language（即超文本标记语言）的缩写，是一种计算机文字编码，主要用于描述web文档，也就是我们平时浏览的网页。HTML中不仅包含网页的文本信息（Text），也包含文本相关的其他信息（例如文本的结构和表示信息等）。这些信息使用HTML标记（HTML markup）进行标识。有了这些HTML标记，计算机应用程序（比如浏览器）就能够“理解”网页文档结构并知道如何处理（比如渲染）这些数据。</p>
+<p class="quote">HTML标记与网页的关系就好像砖与房子一样。</p><p class="quote">在PC上使用Chrome浏览器打开任何网页，在页面空白处右键点击并选择“查看网页源代码”，就可以看到标记了。</p>
+<figure><img src="assets/01/HTML_code.png" >
+<figcaption>HTML标记</figcaption>
+</figure>
+<p>上图中使用尖括号包裹起来的部分(如&lt;h1&gt;)就是标记，标记有几个特点：</p>
+<ul>
+  <li>标记是由尖括号包围的关键词，比如 &lt;html&gt;</li>
+  <li>标记通常是成对出现的，比如 &lt;p&gt; 和 &lt;/p&gt;</li>
+  <li>也有少数标记是单体形式出现，比如&lt;img &gt;</li>
+  <li>标记对中的第一个标签是开始标记，第二个标记是结束标记</li>
+  <li>标记对内部可以插入“文本信息”，也可以插入其他的标记对</li>
+  <li>标记层层嵌套，形成一个“树形”关系</li>
+</ul>
+<p class="quote">标记把文本包裹起来，其实就是为文本添加了“语义”！</p>
+<p class="quote">有了语义，应用程序（比如浏览器）就知道该如何处理这些HTML代码，该以什么样的方式渲染这些HTML代码</p>
+</section>
+<section class="card">
+<h2>剖析HTML</h2>
+<figure><img src="assets/01/html_anatomy.png"></figure>
+<ul>
+  <li>标记名，如body，div，h1，h2，h3，h4，p等等，不同的标记名对应不同的文档结构语义，</li>
+  <li>属性名，如id, class, href, type等，是标记行为类型的标识。一个标签可拥多个属性，但并不是所有的属性。有的属性只对特定的标记才有意义。</li>
+  <li>属性值，是对应属性行为的参数，同一个属性不同的值可能出现的效果会不同，属性必须用引双号包裹起来。</li>
+</ul>
+<p>注意：如果属性值本身包含双引号，那么你需要使用单引号包裹它，比如 </p>
+<code class="lang-html">&lt;h1 style=&quot;font-family:'Courier New'&quot;&gt;Title&lt;/h1&gt;</code>
+
+</section>
+
+<section class="card">
+<h2>理解超文本</h2>
+<p>在浏览器中查看网页的源代码，我们看到的全部都是HTML文本数据。但是，浏览器怎么能把这些HTML文本数据渲染成图片、视频、Flash等媒体内容？</p>
+<figure><img src="assets/01/rending_code.png" >
+<figcaption>浏览器将HTML标记渲染为丰富多彩的内容</figcaption>
+</figure>
+<p class="quote">浏览器如何将枯燥的文本数据转化成漂亮的多媒体网页？</p>
+<p>首先必须理清的一个概念是，HTML源代码中只能包含文本格式的数据，所以网页中的图片、视频、Flash等媒体数据并没有包含在HTML文本中。</p>
+<ul>
+  <li>网页中的文本数据（页面上的文字）：直接包含在HTML源代码中</li>
+  <li>网页中的媒体数据（图片、视频、Flash等）：未直接包含在HTML代码中，但在代码中保存了一个指向该媒体数据的链接地址，该地址使用文本格式描述。</li>
+  </ul>
+<p>下面这行HTML代码会被浏览器渲染成一张图片。渲染时，浏览器先找到src属性，它的值是一个链接，然后从这个链接直接下载图片数据到本地，下载完成后，图片数据被加载到内存，并在网页里呈现出来。</p>
+<code class="lang-html">&lt;img src=&quot;http://design.hnu.cn/images/UI/hnusd_logo.png&quot; /&gt;
+</code>
+</section>
+<section class="card">
+<h2>理解链接</h2>
+<p>链接是互联网的精髓。除了文本以外，几乎所有的媒体资源都是以链接的形式存储在网页之中。链接有一个比较专业的术语名称，叫“统一资源定位器”，英文缩写是URL。</p>
+<p class="quote">URL=<em>Uniform Resource Locator</em></p>
+<p>链接有以下几种表现形式：</p>
+<h3>绝对链接</h3>
+<p>绝对链接定义了获取被引用资源的一个“绝对”位置。链接中声明了通信协议、服务器域名、资源存储目录以及文件名等信息。任何接入互联网的web页面都可以根据这些连接信息引用到资源，而这个连接信息通常是固定不变的。</p>
+<figure><img src="assets/01/absolute_link.svg" >
+<figcaption>绝对链接</figcaption>
+</figure>
+<h3>相对链接</h3>
+<p>相对链接基于引用页面的位置来定义被引用资源的位置。相对链接虽然看上去比绝对链接更简洁，但其位置是相对的，因为不同引用页面与被应用资源的位置关系并不相同。</p>
+<figure><img src="assets/01/relative_link_1.png" >
+<figcaption>当引用页面与被引用资源位于同级目录时，相对链接只要注明被引用资源的文件名即可。</figcaption>
+</figure>
+<figure><img src="assets/01/relative_link_2.png" >
+<figcaption>若被引用资源的父级文件夹与引用页面位于同级目录时，相对链接还要在被引用资源文件名的前面加注文件夹的名称，即：“文件夹/文件名”。若有两级文件夹，则是“文件夹1/文件夹2/文件名”，依此类推。</figcaption>
+</figure>
+<figure><img src="assets/01/relative_link_3.png" >
+<figcaption>若引用页面的父级文件夹与被引用资源位于同级目录时，相对链接要在被引用资源文件名的前面加注“../”，即：“../文件名”。若有两级文件夹，则是“../../文件名”，依此类推。</figcaption>
+</figure>
+</section>
+
+
+<section class="card">
+<h2>文档结构与语义</h2>
+<h3>描述文档结构的标记</h3>
+<p>&lt;html&gt;定义整个HTML文档，它是一个“根”标记</p>
+<code class="lang-html">&lt;html&gt;
+	...其他标记...
+&lt;/html&gt;</code>
+<p>&lt;head&gt;定义HTML的头信息，它包含一些特别的说明信息，通常不会被浏览器渲染在屏幕上</p>
+<code class="lang-html">&lt;html&gt;
+	&lt;head&gt;
+	...其他标记...
+	&lt;/head&gt;
+	&lt;body&gt;
+	...其他标记...
+	&lt;/body&gt;
+&lt;/html&gt;</code>
+<p>&lt;title&gt;定义HTML的标题，通常会出现在浏览器窗口顶部或者标签页上。</p>
+<code class="lang-html">&lt;html&gt;
+	&lt;head&gt;
+	...其他标记...
+	&lt;title&gt;网页设计&lt;/title&gt;
+	...其他标记...
+	&lt;/head&gt;
+	&lt;body&gt;
+	...其他标记...
+	&lt;/body&gt;
+&lt;/html&gt;</code>
+<p>&lt;body&gt;定义HTML的显示部分，如果你想让一个标记显示在浏览器窗口中，那么就必须把它写在&lt;body&gt;的内部</p>
+<code class="lang-html">&lt;html&gt;
+	&lt;head&gt;
+	...这里的内容不会显示在网页上...
+	&lt;/head&gt;
+	&lt;body&gt;
+	...这里的内容会显示在网页上...
+	&lt;/body&gt;
+&lt;/html&gt;</code>
+<h3>HTML5新增标记</h3>
+<p>HTML5是最新一代的HTML，被苹果、谷歌、微软等行业内的翘楚所推崇。HTML5增加了一些标签的定义，加强了文档的结构定义，包括：</p>
+<ul>
+  <li>&lt;header&gt;定义页眉，注意与&lt;head&gt;的区别</li>
+  <li>&lt;footer&gt;定义页脚</li>
+  <li>&lt;nav&gt;定义导航</li>
+  <li>&lt;aside&gt;定义边栏</li>
+  <li>&lt;section&gt;定义章节</li>
+  <li>&lt;article&gt;定义正文</li>
+</ul>
+<figure><img src="assets/01/html5structure.png" >
+<figcaption>一个HTML页面的语义结构</figcaption>
+</figure>
+
+<h3>描述文档语义的标记</h3>
+<p>&lt;h1&gt;定义一级标题，&lt;h2&gt;定义二级标题，&lt;h3&gt;定义二级标题，以此类推...这些标签会告诉浏览器标签内的文本属于整个文档的哪个层级</p>
+<code class="lang-html">&lt;h1&gt;我是1级标题&lt;/h1&gt;
+<br>&lt;h2&gt;我是2级标题&lt;/h2&gt;
+<br>&lt;h2&gt;我是3级标题&lt;/h3&gt;
+</code>
+<p>&lt;p&gt;定义段落，浏览器会把内部的文本以段落的形式渲染在屏幕上</p>
+<code class="lang-html">&lt;p&gt;我是一个标准的段落&lt;/p&gt;</code>
+<p>&lt;ul&gt;定义无序列表，&lt;ol&gt;定义有序列表，&lt;li&gt;定义列表项。列表是一组信息集合</p>
+<code class="lang-html">&lt;ul&gt;
+&lt;li&gt;苹果&lt;/li&gt;
+&lt;li&gt;香蕉&lt;/li&gt;
+&lt;li&gt;菠萝&lt;/li&gt;<br>&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;《英雄》第1季&lt;/li&gt;
+&lt;li&gt;《英雄》第2季&lt;/li&gt;
+&lt;li&gt;《英雄》第3季&lt;/li&gt;<br>&lt;/ol&gt;</code>
+<p>这看上去效果就像</p>
+<ul>
+<li>苹果</li>
+<li>香蕉</li>
+<li>菠萝</li>
+</ul>
+
+<ol>
+<li>《英雄》第1季</li>
+<li>《英雄》第2季</li>
+<li>《英雄》第3季</li>
+</ol>
+<p>&lt;img&gt;定义一张图片，浏览器会从根据该标记的src属性加载图像资源，并将其渲染到屏幕上。例如</p>
+<code class="lang-html">&lt;img src=&quot;http://design.hnu.cn/images/UI/hnusd_logo.png&quot; /&gt;</code>
+<p>&lt;a&gt;定义一个链接</p>
+<code class="lang-html">&lt;a href=&quot;http://design.hnu.cn&quot;&gt;点击我跳转到一个页面&lt;/a&gt;</code>
+<p>&lt;div&gt;定义一个布局容器，排版时会经常使用到它</p>
+<p>&lt;!-- --&gt; 定义一个注释，浏览器会忽略其中的内容</p>
+<code class="lang-html">&lt;!-- <br>这个地方的标记会被浏览器忽略<br>--&gt;</code>
+<p>&lt;script&gt;定义HTML中的脚本，使用这个标记添加JavaScript通常可以让页面具有丰富的交互性</p>
+<p>&lt;video&gt;定义视频</p>
+<code class="lang-html">&lt;video width=&quot;100%&quot; controls&gt;<br>	&lt;source src=&quot;assets/01/test.mp4&quot; type=&quot;video/mp4&quot;&gt;<br>&lt;/video&gt;</code>
+<p>
+<video width="100%" controls>
+<source src="assets/01/test.mp4" type="video/mp4">
+</video>
+</p>
+<p>&lt;audio&gt;定义音频</p>
+<code class="lang-html">&lt;audio controls&gt;<br>	&lt;source src=&quot;assets/01/test.mp3&quot; type=&quot;Audio/mp3&quot;&gt;<br>&lt;/audio&gt;</code>
+<p>
+  <audio controls>
+  <source src="assets/01/test.mp3" type="Audio/mp3">
+  </audio>
+</p>
+<p class="quote">别被这么多标记吓坏了，你不需要一下子把他们都记下来，只需要在用的时候上网查查他们的用法就好啦！</p>
+</section>
+<section class="card lbd">
+<h2>试着打开你的网页编辑器（Brackets、Webstorm或者Dreamweaver等），新建一个HTML文档，然后在body标记之间输入下列代码：</h2>
+<code class="lang-html">&lt;a href=&quot;http://design.hnu.cn&quot;&gt;点击我跳转到一个页面&lt;/a&gt;</code>
+<code class="lang-html">&lt;h1 align=&quot;center&quot;&gt;居中对齐的标题&lt;/h1&gt;</code>
+<code class="lang-html">&lt;img src=&quot;http://design.hnu.cn/images/UI/hnusd_logo.png&quot; /&gt;
+</code>
+<p>此外，查看一下这个<a href="demo/errorpage.html">有问题的网页</a>的源代码，看看这个页面的问题在哪里？</p>
+</section>
+<section class="card">
+<h2>一些需要避免的错误
+</h2>
+<figure><img src="assets/01/nestedmarkup.png">
+<figcaption>标记的嵌套关系必须正确，否则浏览器就可能出现解析错误。</figcaption>
+</figure>
+
+<figure><img src="assets/01/closemarkup.png">
+<figcaption>标记必须闭合，否则会出现解析错误。（一些浏览器可以“智能”地自动帮你纠错并正确解析）</figcaption>
+</figure>
+<figure><img src="assets/01/caperror.png">
+<figcaption>虽然有些版本的HTML允许你使用大写标签，但未来的HTML规范将强制使用小写标签</figcaption>
+</figure>
+
+</section>
+
+
+  <h1>课外阅读</h1> 
+  <section class="card">
+<h2>图形用户界面中的标记语言</h2>
+<p>作为一种标记语言，HTML还有很多“表兄弟”，比如XML，XAML，MXML等等，这些标记语言对于图形用户界面设计开发具有特别的意义。通常，设计开发人员会使用某种标记语言来描述界面上复杂的UI元素，并使用另外一种编程语言配合标记语言来组织和定义界面的交互逻辑。比如：</p>
+
+<figure><img src="assets/01/html_sample.png" >
+<figcaption>在网页的界面设计开发中，设计开发人员使用HTML描述界面，使用JavaScript来组织和定义交互逻辑。</figcaption>
+</figure>
+<figure><img src="assets/01/android_xml_sample.png">
+<figcaption>在Android开发中，设计开发人员使用XML描述界面，使用Java来组织和定义交互逻辑。</figcaption>
+</figure>
+<figure><img src="assets/01/xaml.png">
+<figcaption>在Windows开发中，设计开发人员使用XAML描述界面，使用C#来组织和定义交互逻辑。</figcaption>
+</figure>
+<figure><img src="assets/01/mxml_sample.png" >
+<figcaption>在基于Adobe Flex的界面设计开发中，设计开发人员使用MXML构建页面，使用ActionScript来组织和定义交互逻辑。</figcaption>
+</figure>
+</section>
+<section class="card">
+<h2>HTML，浏览器制造商与W3C</h2>
+<figure><img src="assets/01/browser_makers_and_w3c.png" alt="浏览器制造商与W3C">
+<figcaption>浏览器制造商与W3C的关系</figcaption>
+</figure>
+<p>HTML代码需要通过浏览器解析和渲染才能以可视化的形式呈现在用户面前。但是，不同的浏览器制造商解析和渲染的技术实现方式并不相同。如果用户使用不同的浏览器，那么即便他们查看的是同一个网页，其结果也可能大相径庭。</p>
+<p>W3C是一个互联网标准的管理组织。通过W3C制定的HTML规范，浏览器制造商便知道他们的产品应该按照什么样的标准开发生产。</p>
+<p>浏览器制造商通常也会在自己的产品中添加一些未包含在HTML规范中但他们又觉得有价值的功能特性。如果某些功能特性确实好，并且被绝大多数浏览器采纳，就形成了一种事实标准。浏览器制造商会联合向W3C建议在HTML规范中加入这些功能特性，推动HTML的进化发展。</p>
+</section>
+ <section class="card">
+<ul>
+  <li><a href="http://www.adobe.com/cn/devnet/html5/articles/adobe-standards-html5.html" target="_blank">http://www.adobe.com/cn/devnet/html5/articles/adobe-standards-html5.html</a><a href="http://www.webplatform.org"></a></li>
+  <li><a href="http://www.adobe.com/cn/devnet/dreamweaver/articles/understanding-html5-semantics.html" target="_blank">http://www.adobe.com/cn/devnet/dreamweaver/articles/understanding-html5-semantics.html</a></li>
+  <li><a href="http://study.163.com/course/introduction.htm?courseId=171001#/courseDetail" target="_blank">http://study.163.com/course/introduction.htm?courseId=171001#/courseDetail</a></li>
+</ul>
+</section>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页设计</title>
+<link href="css/general.css" rel="stylesheet" type="text/css">
+<link href="assets/02/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div class="wrapper">
+<h1>CSS基本介绍</h1>
+<section class="card">
+<h2>CSS是什么？</h2>
+<p>CSS是Cascading Style Sheet的缩写，即层叠样式表。</p>
+<p class="quote">CSS=Cascading Style Sheet</p>
+<p>CSS定义了一系列样式规则，告诉浏览器应如何将HTML标记元素渲染在用户的屏幕上，具体包括：</p>
+<ul>
+  <li>定位</li>
+  <li>尺寸</li>
+  <li>颜色</li>
+  <li>文本字体</li>
+  <li>层叠关系</li>
+  <li>等等...</li>
+</ul>
+<p>网页不仅要向用户展示内容信息，更需要美观的表现形式。通俗地来讲，为网页设置css就如同化妆一样。如果没有特别的设定，浏览器会使用预设的默认样式将HTML标记渲染在屏幕上，但这种默认样式往往非常简陋，就好像没有装修的“毛坯”状态。</p>
+<p>如果设置了css，浏览器就会按照css中的样式规则来渲染。设计开发人员可以通过css为HTML标记指定非常复杂的样式规则，让页面的内容信息看上去更加美观，从而提升用户的浏览体验。</p>
+<figure>
+	<img src="assets/02/css-before-after.svg" />
+	<figcaption>CSS是让网页变漂亮的秘方。图片来源：百度</figcaption>
+</figure>
+</section>
+<section class="card">
+<h2>网页的“内容”与“表现”</h2>
+<p>设计开发人员可以有多种方式为HTML标记定义渲染的样式规则。其中最直接的做法，就是在HTML标记上设置style属性，并将样式规则定义为style属性的值，如下所示：</p>
+<p style="font-size:48px;">这是一个例句，这句话中有一个词被<b style="color:red;">强调</b>了！</p>
+<code class="lang-html">&lt;p style=&quot;font-size:48px;&quot;&gt;这是一个例句，这句话中有一个词被&lt;b style=&quot;color:red;&quot;&gt;强调&lt;/b&gt;了！&lt;/p&gt;</code>
+
+<p>在上面的例子中，文本信息与样式的定义揉杂在一起。换句话说，在同一个HTML文档（网页）中，既有所谓“内容”，又有控制内容如何渲染的“表现”。</p>
+
+<p class="quote">将复杂的“内容”和“表现”揉杂在一个HTML文档中，不利于编辑和修改，是一个糟糕的主意。</p>
+<p class="quote">
+    css最大的意义就是让HTML文档的“内容”与“表现”分离。
+</p>
+</section>
+<section class="card">
+<h2>解剖CSS</h2>
+<p>CSS定义必须告诉浏览器，如何把HTML中的标记渲染出来。定义CSS样式规则的写法与定义HTML标记的style属性略有不同。CSS的定义可以分为两个部分：</p>
+<ul>
+  <li>选择器：帮助浏览器定位<span class="highlight">目标HTML标记</span></li>
+  <li>规则声明：告诉浏览器如何渲染<span class="highlight">目标HTML标记</span></li>
+</ul>
+<figure><img src="assets/02/css_structure.png">
+<figcaption>CSS代码的结构</figcaption>
+</figure>
+<p class="quote">CSS注释请使用/*......*/</p>
+</section>
+<section class="card lbd">
+<h2>下面哪句CSS语法是正确的？</h2>
+<code class="lang-css">body:color=black</code>
+<code class="lang-css">{body:color=black(body}</code>
+<code class="lang-css">body {color: black}</code>
+<code class="lang-css">{body;color:black}</code>
+</section>
+<section class="card">
+<h2>将CSS关联到HTML</h2>
+<p>CSS必须以某种方式关联到指定的HTML文档，才能控制该文档的表现。基本上，有两种关联方式：</p>
+<ul>
+  <li>将CSS定义代码插入到HTML文档的&lt;head&gt;标签内的&lt;style&gt;标记里</li>
+  <li>将CSS定义代码保存为一个独立的*.CSS格式文件，并且通过&lt;link&gt;标签链接到HTML</li>
+</ul>
+<figure><img src="assets/images/screenshot_interal_css.png" alt="文档内CSS">
+<figcaption>方式1:在文档内的style标签中定义CSS规则</figcaption>
+</figure>
+<figure><img src="assets/images/screenshot_external_css.png" alt="文档内CSS">
+<figcaption>方式2:通过link标签链接外部CSS定义</figcaption>
+</figure>
+<p>强烈推荐使用第二种方式，这样一来设计师和开发人员就可以同时工作，并且互不影响。设计师负责CSS，开发人员负责HTML。</p>
+
+</section>
+<section class="card lbd">
+<h2>新建一个HTML文档，然后编写一个CSS规则并关联到该HTML文档，请使用第二种方式。</h2>
+<code class="lang-html">&lt;body&gt;
+&lt;h1&gt;这是一个标题&lt;/h1&gt;
+&lt;p&gt;这是一个段落&lt;/p&gt;
+&lt;/body&gt;</code>
+<code class="lang-css">h1{color:red;font-size:14px}</code>
+<p>如果成功，所有的h1标记内的文本都会被渲染成红色。</p>
+</section>
+<section class="card lbd">
+<h2>CSS基础测验</h2>
+<p> <a href="http://www.w3school.com.cn/quiz/quiz.asp?quiz=css">http://www.w3school.com.cn/quiz/quiz.asp?quiz=CSS</a></p>
+</section>
+<h1>课外阅读</h1>
+  <section class="card">
+   <h2>标记汤</h2>
+    <p>在早期的网页设计中，设计开发人员似乎并不在乎HTML文档中的“内容”与“表现”是否分离。有时，为了实现最终的视觉效果，设计开发人员可能会在style属性中定义一个非常复杂的样式规则，甚至创造性地使用许多“另类”的手法来控制页面的“表现”，比如：</p>
+<ul>
+  <li>乱用语义标记。将原本用于定义内容内容语义的标记如&lt;h1&gt;~&lt;h6&gt;等当作一种视觉样式的解决方案。例如，想要文本字号变大，就用&lt;h1&gt;，而不管这些文本在语义上是不是一种标题。</li>
+  <li>使用表格布局。用&lt;table&gt;等相关标记作为一种支撑页面布局的解决方案，但&lt;table&gt;原本是承载表格类数据的容器。</li>
+</ul>
+<figure><img src="assets/02/table_layout.png" alt="标记汤">
+<figcaption>表格布局示意图，使用表格来实现9宫格结构</figcaption>
+</figure>
+<p>这些用法，违背了HTML标记的设计初衷，形成了杂烩状的代码结构，被人戏称为<span class="highlight">“标记汤”（Tag Soup）</span>。</p>
+
+<figure><img src="assets/02/tag_soup.jpg" alt="标记汤">
+<figcaption>标记汤，图片取自<a href="http://www.accessibility.nl/kennisbank/artikelen/valideenwebstandaarden" target="_target">http://www.accessibility.nl/kennisbank/artikelen/valideenwebstandaarden</a></figcaption>
+</figure>
+<p>包括<a href="http://en.wikipedia.org/wiki/Jeffrey_Zeldman" target="_blank">Jeffrey Zeldman</a>在内的web标准倡导者认为，每一个网页设计和开发人员都应该认真思考标记的语义，严肃对待HTML标准，尽量避免生产“标记汤”。</p>
+<p>“标记汤”带来的混乱是显而易见的。首先，两种不同性质的编码混合在同一个文档里，查找和修改往往十分麻烦。此外，在网页设计开发过程中，不同角色的专业人员会负责不同的工作内容，比如设计师希望控制一个页面的视觉表现，但开发人员希望控制代码结构和标记输出。然而，两个人不可能同时修改同一个HTML文档。因此，为了提高协同工作的效率，最好的方式就是将“内容”与“表现”分离。</p>
+
+</section>
+</div>
+</body>
+</html>
