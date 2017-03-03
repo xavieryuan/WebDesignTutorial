@@ -1,3 +1,4 @@
 # ignore videos
 
 assets/videos/*.mp4
+.wing
